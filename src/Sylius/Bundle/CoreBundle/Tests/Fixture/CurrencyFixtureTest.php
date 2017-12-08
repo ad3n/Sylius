@@ -18,9 +18,6 @@ use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Sylius\Bundle\CoreBundle\Fixture\CurrencyFixture;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class CurrencyFixtureTest extends \PHPUnit_Framework_TestCase
 {
     use ConfigurationTestCaseTrait;
@@ -48,8 +45,7 @@ final class CurrencyFixtureTest extends \PHPUnit_Framework_TestCase
     {
         return new CurrencyFixture(
             $this->getMockBuilder(FactoryInterface::class)->getMock(),
-            $this->getMockBuilder(ObjectManager::class)->getMock(),
-            'DEFAULT_CURRENCY_CODE'
+            $this->getMockBuilder(ObjectManager::class)->getMock()
         );
     }
 }

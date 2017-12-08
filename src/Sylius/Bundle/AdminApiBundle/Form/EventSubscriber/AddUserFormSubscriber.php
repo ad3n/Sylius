@@ -20,9 +20,6 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 final class AddUserFormSubscriber implements EventSubscriberInterface
 {
     /**
@@ -67,6 +64,7 @@ final class AddUserFormSubscriber implements EventSubscriberInterface
         $normData = $event->getForm()->getNormData();
         if (!isset($data['user'])) {
             $this->removeUserField($event);
+
             return;
         }
 
@@ -90,6 +88,7 @@ final class AddUserFormSubscriber implements EventSubscriberInterface
                 return false;
             }
         }
+
         return true;
     }
 

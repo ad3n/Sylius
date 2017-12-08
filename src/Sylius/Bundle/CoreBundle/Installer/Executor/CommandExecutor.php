@@ -20,26 +20,22 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\RuntimeException;
 
-/**
- * @author Romain Monceau <romain@akeneo.com>
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class CommandExecutor
 {
     /**
      * @var InputInterface
      */
-    protected $input;
+    private $input;
 
     /**
      * @var OutputInterface
      */
-    protected $output;
+    private $output;
 
     /**
      * @var Application
      */
-    protected $application;
+    private $application;
 
     /**
      * @param InputInterface $input
@@ -92,7 +88,7 @@ final class CommandExecutor
     /**
      * @return array
      */
-    protected function getDefaultParameters(): array
+    private function getDefaultParameters(): array
     {
         $defaultParameters = ['--no-debug' => true];
 

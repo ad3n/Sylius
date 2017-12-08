@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sylius package.
  *
@@ -14,9 +15,6 @@ namespace Sylius\Component\Grid\Definition;
 
 use Webmozart\Assert\Assert;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 class Grid
 {
     /**

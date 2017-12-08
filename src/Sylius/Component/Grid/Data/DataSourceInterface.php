@@ -15,13 +15,10 @@ namespace Sylius\Component\Grid\Data;
 
 use Sylius\Component\Grid\Parameters;
 
-/**
- * @author Paweł Jędrzejewski <pawel@svaluelius.org>
- */
 interface DataSourceInterface
 {
     public const CONDITION_AND = 'and';
-    public const CONDITION_OR  = 'or';
+    public const CONDITION_OR = 'or';
 
     /**
      * @param mixed $expression

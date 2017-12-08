@@ -19,9 +19,6 @@ use Sylius\Component\Product\Model\ProductVariant as BaseVariant;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 class ProductVariant extends BaseVariant implements ProductVariantInterface
 {
     /**
@@ -108,10 +105,10 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
             $string .= '(';
 
             foreach ($this->getOptionValues() as $option) {
-                $string .= $option->getOption()->getName().': '.$option->getValue().', ';
+                $string .= $option->getOption()->getName() . ': ' . $option->getValue() . ', ';
             }
 
-            $string = substr($string, 0, -2).')';
+            $string = substr($string, 0, -2) . ')';
         }
 
         return $string;

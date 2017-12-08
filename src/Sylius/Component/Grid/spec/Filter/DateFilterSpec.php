@@ -18,9 +18,6 @@ use Sylius\Component\Grid\Data\DataSourceInterface;
 use Sylius\Component\Grid\Data\ExpressionBuilderInterface;
 use Sylius\Component\Grid\Filtering\FilterInterface;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class DateFilterSpec extends ObjectBehavior
 {
     function it_implements_a_filter_interface(): void
@@ -46,7 +43,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'from' => [
                     'date' => '2016-12-05',
                     'time' => '08:00',
-                ]
+                ],
             ],
             []
         );
@@ -74,7 +71,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '',
                     'time' => '',
-                ]
+                ],
             ],
             ['inclusive_from' => false]
         );
@@ -102,7 +99,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '',
                     'time' => '',
-                ]
+                ],
             ],
             []
         );
@@ -126,7 +123,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '2016-12-06',
                     'time' => '08:00',
-                ]
+                ],
             ],
             []
         );
@@ -154,7 +151,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '2016-12-06',
                     'time' => '08:00',
-                ]
+                ],
             ],
             ['inclusive_to' => true]
         );
@@ -178,7 +175,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '2016-12-06',
                     'time' => '',
-                ]
+                ],
             ],
             []
         );
@@ -211,7 +208,7 @@ final class DateFilterSpec extends ObjectBehavior
                 'to' => [
                     'date' => '2016-12-06',
                     'time' => '08:00',
-                ]
+                ],
             ],
             []
         );

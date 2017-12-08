@@ -20,9 +20,6 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- */
 final class CouponGenerationAmountValidator extends ConstraintValidator
 {
     /**
@@ -59,7 +56,7 @@ final class CouponGenerationAmountValidator extends ConstraintValidator
                 [
                     '%expectedAmount%' => $instruction->getAmount(),
                     '%codeLength%' => $instruction->getCodeLength(),
-                    '%possibleAmount%' => $this->generationPolicy->getPossibleGenerationAmount($instruction)
+                    '%possibleAmount%' => $this->generationPolicy->getPossibleGenerationAmount($instruction),
                 ]
             );
         }

@@ -23,11 +23,6 @@ use Sylius\Component\Payment\Model\PaymentMethodTranslationInterface;
 use Sylius\Component\Payment\Repository\PaymentMethodRepositoryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class PaymentContext implements Context
 {
     /**
@@ -90,7 +85,7 @@ final class PaymentContext implements Context
      */
     public function storeAllowsPaying($paymentMethodName, $position = null)
     {
-        $this->createPaymentMethod($paymentMethodName, 'PM_'.$paymentMethodName, 'Offline', 'Payment method', true, $position);
+        $this->createPaymentMethod($paymentMethodName, 'PM_' . $paymentMethodName, 'Offline', 'Payment method', true, $position);
     }
 
     /**
@@ -106,7 +101,7 @@ final class PaymentContext implements Context
     }
 
     /**
-     * @Given the store has a payment method :paymentMethodName with a code :paymentMethodCode
+     * @Given the store has (also) a payment method :paymentMethodName with a code :paymentMethodCode
      */
     public function theStoreHasAPaymentMethodWithACode($paymentMethodName, $paymentMethodCode)
     {
@@ -114,7 +109,7 @@ final class PaymentContext implements Context
     }
 
     /**
-     * @Given the store has a payment method :paymentMethodName with a code :paymentMethodCode and Paypal Express Checkout gateway
+     * @Given the store has (also) a payment method :paymentMethodName with a code :paymentMethodCode and Paypal Express Checkout gateway
      */
     public function theStoreHasPaymentMethodWithCodeAndPaypalExpressCheckoutGateway(
         $paymentMethodName,
@@ -173,7 +168,7 @@ final class PaymentContext implements Context
      */
     public function theStoreHasPaymentMethodNotAssignedToAnyChannel($paymentMethodName)
     {
-        $this->createPaymentMethod($paymentMethodName, 'PM_'.$paymentMethodName, 'Offline', 'Payment method', false);
+        $this->createPaymentMethod($paymentMethodName, 'PM_' . $paymentMethodName, 'Offline', 'Payment method', false);
     }
 
     /**

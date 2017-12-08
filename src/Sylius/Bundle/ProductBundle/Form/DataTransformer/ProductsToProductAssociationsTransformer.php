@@ -23,25 +23,22 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class ProductsToProductAssociationsTransformer implements DataTransformerInterface
 {
     /**
      * @var FactoryInterface
      */
-    protected $productAssociationFactory;
+    private $productAssociationFactory;
 
     /**
      * @var ProductRepositoryInterface
      */
-    protected $productRepository;
+    private $productRepository;
 
     /**
      * @var RepositoryInterface
      */
-    protected $productAssociationTypeRepository;
+    private $productAssociationTypeRepository;
 
     /**
      * @var Collection

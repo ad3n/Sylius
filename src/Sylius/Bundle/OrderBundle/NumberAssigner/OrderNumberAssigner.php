@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is a part of the Sylius package.
+ * This file is part of the Sylius package.
  *
  * (c) Paweł Jędrzejewski
  *
@@ -16,9 +16,6 @@ namespace Sylius\Bundle\OrderBundle\NumberAssigner;
 use Sylius\Bundle\OrderBundle\NumberGenerator\OrderNumberGeneratorInterface;
 use Sylius\Component\Order\Model\OrderInterface;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class OrderNumberAssigner implements OrderNumberAssignerInterface
 {
     /**

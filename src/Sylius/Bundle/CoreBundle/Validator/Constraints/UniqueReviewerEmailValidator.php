@@ -23,10 +23,6 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 class UniqueReviewerEmailValidator extends ConstraintValidator
 {
     /**
@@ -64,7 +60,7 @@ class UniqueReviewerEmailValidator extends ConstraintValidator
      */
     public function validate($review, Constraint $constraint): void
     {
-        /* @var ReviewerInterface|null $customer */
+        /** @var ReviewerInterface|null $customer */
         $customer = $review->getAuthor();
 
         $token = $this->tokenStorage->getToken();

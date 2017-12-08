@@ -19,9 +19,6 @@ use Sylius\Component\Grid\Definition\ActionGroup;
 use Sylius\Component\Grid\Definition\Field;
 use Sylius\Component\Grid\Definition\Filter;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class GridSpec extends ObjectBehavior
 {
     function let(): void
@@ -29,7 +26,7 @@ final class GridSpec extends ObjectBehavior
         $this->beConstructedThrough('fromCodeAndDriverConfiguration', ['sylius_admin_tax_category', 'doctrine/orm', [
             'resource' => 'sylius.tax_category',
             'method' => 'createByCodeQueryBuilder',
-            'arguments' => ['$code']
+            'arguments' => ['$code'],
         ]]);
     }
 
@@ -48,7 +45,7 @@ final class GridSpec extends ObjectBehavior
         $this->getDriverConfiguration()->shouldReturn([
             'resource' => 'sylius.tax_category',
             'method' => 'createByCodeQueryBuilder',
-            'arguments' => ['$code']
+            'arguments' => ['$code'],
         ]);
     }
 

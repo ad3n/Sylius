@@ -15,9 +15,6 @@ namespace Sylius\Component\Attribute\Model;
 
 use Doctrine\Common\Collections\Collection;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 interface AttributeSubjectInterface
 {
     /**
@@ -28,10 +25,15 @@ interface AttributeSubjectInterface
     /**
      * @param string $localeCode
      * @param string $fallbackLocaleCode
+     * @param string|null $baseLocaleCode
      *
      * @return Collection|AttributeValueInterface[]
      */
-    public function getAttributesByLocale(string $localeCode, string $fallbackLocaleCode): Collection;
+    public function getAttributesByLocale(
+        string $localeCode,
+        string $fallbackLocaleCode,
+        ?string $baseLocaleCode = null
+    ): Collection;
 
     /**
      * @param AttributeValueInterface $attribute

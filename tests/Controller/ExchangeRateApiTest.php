@@ -17,9 +17,6 @@ use Lakion\ApiTestCase\JsonApiTestCase;
 use Sylius\Component\Currency\Model\ExchangeRateInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 final class ExchangeRateApiTest extends JsonApiTestCase
 {
     /**
@@ -243,7 +240,6 @@ EOT;
         $response = $this->client->getResponse();
         $this->assertResponse($response, 'exchange_rate/update_response', Response::HTTP_OK);
     }
-
 
     /**
      * @test

@@ -54,9 +54,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class ResourceControllerSpec extends ObjectBehavior
 {
     function let(
@@ -503,6 +500,8 @@ final class ResourceControllerSpec extends ObjectBehavior
 
         $flashHelper->addFlashFromEvent($configuration, $event)->shouldBeCalled();
 
+        $event->hasResponse()->willReturn(false);
+
         $repository->add($newResource)->shouldNotBeCalled();
         $eventDispatcher->dispatchPostEvent(ResourceActions::CREATE, $configuration, $newResource)->shouldNotBeCalled();
         $flashHelper->addSuccessFlash(Argument::any())->shouldNotBeCalled();
@@ -510,6 +509,58 @@ final class ResourceControllerSpec extends ObjectBehavior
         $redirectHandler->redirectToIndex($configuration, $newResource)->willReturn($redirectResponse);
 
         $this->createAction($request)->shouldReturn($redirectResponse);
+    }
+
+    function it_does_not_create_the_resource_and_return_response_for_html_requests_stopped_via_events(
+        MetadataInterface $metadata,
+        RequestConfigurationFactoryInterface $requestConfigurationFactory,
+        RequestConfiguration $configuration,
+        AuthorizationCheckerInterface $authorizationChecker,
+        FactoryInterface $factory,
+        NewResourceFactoryInterface $newResourceFactory,
+        RepositoryInterface $repository,
+        ResourceInterface $newResource,
+        ResourceFormFactoryInterface $resourceFormFactory,
+        Form $form,
+        FlashHelperInterface $flashHelper,
+        EventDispatcherInterface $eventDispatcher,
+        ResourceControllerEvent $event,
+        Request $request,
+        Response $response
+    ): void {
+        $metadata->getApplicationName()->willReturn('sylius');
+        $metadata->getName()->willReturn('product');
+
+        $requestConfigurationFactory->create($metadata, $request)->willReturn($configuration);
+        $configuration->hasPermission()->willReturn(true);
+        $configuration->getPermission(ResourceActions::CREATE)->willReturn('sylius.product.create');
+
+        $authorizationChecker->isGranted($configuration, 'sylius.product.create')->willReturn(true);
+
+        $configuration->isHtmlRequest()->willReturn(true);
+        $configuration->getTemplate(ResourceActions::CREATE . '.html')->willReturn('SyliusShopBundle:Product:create.html.twig');
+
+        $newResourceFactory->create($configuration, $factory)->willReturn($newResource);
+        $resourceFormFactory->create($configuration, $newResource)->willReturn($form);
+
+        $request->isMethod('POST')->willReturn(true);
+        $form->handleRequest($request)->willReturn($form);
+        $form->isValid()->willReturn(true);
+        $form->getData()->willReturn($newResource);
+
+        $eventDispatcher->dispatchPreEvent(ResourceActions::CREATE, $configuration, $newResource)->willReturn($event);
+        $event->isStopped()->willReturn(true);
+
+        $flashHelper->addFlashFromEvent($configuration, $event)->shouldBeCalled();
+
+        $event->hasResponse()->willReturn(true);
+        $event->getResponse()->willReturn($response);
+
+        $repository->add($newResource)->shouldNotBeCalled();
+        $eventDispatcher->dispatchPostEvent(ResourceActions::CREATE, $configuration, $newResource)->shouldNotBeCalled();
+        $flashHelper->addSuccessFlash(Argument::any())->shouldNotBeCalled();
+
+        $this->createAction($request)->shouldReturn($response);
     }
 
     function it_redirects_to_newly_created_resource(
@@ -1266,6 +1317,105 @@ final class ResourceControllerSpec extends ObjectBehavior
         $this->updateAction($request)->shouldReturn($redirectResponse);
     }
 
+    function it_throws_a_403_exception_if_user_is_unauthorized_to_delete_multiple_resources(
+        MetadataInterface $metadata,
+        RequestConfigurationFactoryInterface $requestConfigurationFactory,
+        RequestConfiguration $configuration,
+        Request $request,
+        AuthorizationCheckerInterface $authorizationChecker
+    ): void {
+        $requestConfigurationFactory->create($metadata, $request)->willReturn($configuration);
+        $configuration->hasPermission()->willReturn(true);
+        $configuration->getPermission(ResourceActions::BULK_DELETE)->willReturn('sylius.product.bulk_delete');
+
+        $authorizationChecker->isGranted($configuration, 'sylius.product.bulk_delete')->willReturn(false);
+
+        $this
+            ->shouldThrow(new AccessDeniedException())
+            ->during('bulkDeleteAction', [$request])
+        ;
+    }
+
+    function it_deletes_multiple_resources_and_redirects_to_index_for_html_request(
+        MetadataInterface $metadata,
+        RequestConfigurationFactoryInterface $requestConfigurationFactory,
+        RequestConfiguration $configuration,
+        AuthorizationCheckerInterface $authorizationChecker,
+        RepositoryInterface $repository,
+        ResourcesCollectionProviderInterface $resourcesCollectionProvider,
+        ResourceInterface $firstResource,
+        ResourceInterface $secondResource,
+        RedirectHandlerInterface $redirectHandler,
+        FlashHelperInterface $flashHelper,
+        EventDispatcherInterface $eventDispatcher,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        ContainerInterface $container,
+        ResourceControllerEvent $firstPreEvent,
+        ResourceControllerEvent $secondPreEvent,
+        ResourceControllerEvent $firstPostEvent,
+        ResourceControllerEvent $secondPostEvent,
+        ResourceDeleteHandlerInterface $resourceDeleteHandler,
+        Request $request,
+        Response $redirectResponse
+    ): void {
+        $metadata->getApplicationName()->willReturn('sylius');
+        $metadata->getName()->willReturn('product');
+
+        $requestConfigurationFactory->create($metadata, $request)->willReturn($configuration);
+        $configuration->hasPermission()->willReturn(true);
+        $configuration->getPermission(ResourceActions::BULK_DELETE)->willReturn('sylius.product.bulk_delete');
+        $request->request = new ParameterBag(['_csrf_token' => 'xyz']);
+
+        $container->has('security.csrf.token_manager')->willReturn(true);
+        $container->get('security.csrf.token_manager')->willReturn($csrfTokenManager);
+        $csrfTokenManager->isTokenValid(new CsrfToken('bulk_delete', 'xyz'))->willReturn(true);
+
+        $eventDispatcher
+            ->dispatchMultiple(ResourceActions::BULK_DELETE, $configuration, [$firstResource, $secondResource])
+            ->shouldBeCalled()
+        ;
+
+        $authorizationChecker->isGranted($configuration, 'sylius.product.bulk_delete')->willReturn(true);
+        $resourcesCollectionProvider->get($configuration, $repository)->willReturn([$firstResource, $secondResource]);
+
+        $configuration->isHtmlRequest()->willReturn(true);
+        $configuration->isCsrfProtectionEnabled()->willReturn(true);
+
+        $eventDispatcher
+            ->dispatchPreEvent(ResourceActions::DELETE, $configuration, $firstResource)
+            ->willReturn($firstPreEvent)
+        ;
+        $firstPreEvent->isStopped()->willReturn(false);
+
+        $resourceDeleteHandler->handle($firstResource, $repository)->shouldBeCalled();
+
+        $eventDispatcher
+            ->dispatchPostEvent(ResourceActions::DELETE, $configuration, $firstResource)
+            ->willReturn($firstPostEvent)
+        ;
+        $firstPostEvent->hasResponse()->willReturn(false);
+
+        $eventDispatcher
+            ->dispatchPreEvent(ResourceActions::DELETE, $configuration, $secondResource)
+            ->willReturn($secondPreEvent)
+        ;
+        $secondPreEvent->isStopped()->willReturn(false);
+
+        $resourceDeleteHandler->handle($secondResource, $repository)->shouldBeCalled();
+
+        $eventDispatcher
+            ->dispatchPostEvent(ResourceActions::DELETE, $configuration, $secondResource)
+            ->willReturn($secondPostEvent)
+        ;
+        $secondPostEvent->hasResponse()->willReturn(false);
+
+        $flashHelper->addSuccessFlash($configuration, ResourceActions::BULK_DELETE)->shouldBeCalled();
+
+        $redirectHandler->redirectToIndex($configuration)->willReturn($redirectResponse);
+
+        $this->bulkDeleteAction($request)->shouldReturn($redirectResponse);
+    }
+
     function it_throws_a_403_exception_if_user_is_unauthorized_to_delete_a_single_resource(
         MetadataInterface $metadata,
         RequestConfigurationFactoryInterface $requestConfigurationFactory,
@@ -1937,10 +2087,57 @@ final class ResourceControllerSpec extends ObjectBehavior
         $eventDispatcher->dispatchPostEvent(ResourceActions::UPDATE, $configuration, $resource)->shouldNotBeCalled();
         $flashHelper->addSuccessFlash($configuration, ResourceActions::UPDATE, $resource)->shouldNotBeCalled();
 
+        $event->hasResponse()->willReturn(false);
+
         $flashHelper->addFlashFromEvent($configuration, $event)->shouldBeCalled();
         $redirectHandler->redirectToResource($configuration, $resource)->willReturn($redirectResponse);
 
         $this->applyStateMachineTransitionAction($request)->shouldReturn($redirectResponse);
+    }
+
+    function it_does_not_apply_state_machine_transition_on_resource_and_return_event_response_for_html_requests_stopped_via_event(
+        MetadataInterface $metadata,
+        RequestConfigurationFactoryInterface $requestConfigurationFactory,
+        RequestConfiguration $configuration,
+        AuthorizationCheckerInterface $authorizationChecker,
+        StateMachineInterface $stateMachine,
+        ObjectManager $manager,
+        RepositoryInterface $repository,
+        SingleResourceProviderInterface $singleResourceProvider,
+        ResourceInterface $resource,
+        FlashHelperInterface $flashHelper,
+        EventDispatcherInterface $eventDispatcher,
+        ResourceControllerEvent $event,
+        Request $request,
+        Response $response
+    ): void {
+        $metadata->getApplicationName()->willReturn('sylius');
+        $metadata->getName()->willReturn('product');
+
+        $requestConfigurationFactory->create($metadata, $request)->willReturn($configuration);
+        $configuration->hasPermission()->willReturn(true);
+        $configuration->getPermission(ResourceActions::UPDATE)->willReturn('sylius.product.update');
+
+        $authorizationChecker->isGranted($configuration, 'sylius.product.update')->willReturn(true);
+        $singleResourceProvider->get($configuration, $repository)->willReturn($resource);
+
+        $configuration->isHtmlRequest()->willReturn(true);
+
+        $eventDispatcher->dispatchPreEvent(ResourceActions::UPDATE, $configuration, $resource)->willReturn($event);
+        $event->isStopped()->willReturn(true);
+
+        $manager->flush()->shouldNotBeCalled();
+        $stateMachine->apply($resource)->shouldNotBeCalled();
+
+        $eventDispatcher->dispatchPostEvent(ResourceActions::UPDATE, $configuration, $resource)->shouldNotBeCalled();
+        $flashHelper->addSuccessFlash($configuration, ResourceActions::UPDATE, $resource)->shouldNotBeCalled();
+
+        $flashHelper->addFlashFromEvent($configuration, $event)->shouldBeCalled();
+
+        $event->hasResponse()->willReturn(true);
+        $event->getResponse()->willReturn($response);
+
+        $this->applyStateMachineTransitionAction($request)->shouldReturn($response);
     }
 
     function it_applies_state_machine_transition_on_resource_and_returns_200_for_non_html_requests(

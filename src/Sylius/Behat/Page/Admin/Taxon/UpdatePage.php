@@ -23,9 +23,6 @@ use Sylius\Behat\Service\SlugGenerationHelper;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- */
 class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
 {
     use ChecksCodeImmutability;
@@ -87,7 +84,7 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
             $imageForm->fillField('Type', $type);
         }
 
-        $imageForm->find('css', 'input[type="file"]')->attachFile($filesPath.$path);
+        $imageForm->find('css', 'input[type="file"]')->attachFile($filesPath . $path);
     }
 
     /**
@@ -179,7 +176,7 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
         $filesPath = $this->getParameter('files_path');
 
         $imageForm = $this->getImageElementByType($type);
-        $imageForm->find('css', 'input[type="file"]')->attachFile($filesPath.$path);
+        $imageForm->find('css', 'input[type="file"]')->attachFile($filesPath . $path);
     }
 
     /**
@@ -337,7 +334,7 @@ class UpdatePage extends BaseUpdatePage implements UpdatePageInterface
     private function getImageElementByType($type)
     {
         $images = $this->getElement('images');
-        $typeInput = $images->find('css', 'input[value="'.$type.'"]');
+        $typeInput = $images->find('css', 'input[value="' . $type . '"]');
 
         if (null === $typeInput) {
             return null;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b125392d78b9f6d5ea6277d155a2ad2",
+    "content-hash": "9adea016508c1fa8ed2c506c5f151802",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2602,7 +2602,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2883,7 +2883,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
@@ -4242,6 +4242,88 @@
             "time": "2017-01-02T13:31:39+00:00"
         },
         {
+            "name": "ramsey/uuid",
+            "version": "3.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/uuid.git",
+                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/45cffe822057a09e05f7bd09ec5fb88eeecd2334",
+                "reference": "45cffe822057a09e05f7bd09ec5fb88eeecd2334",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": "^1.0|^2.0",
+                "php": "^5.4 || ^7.0"
+            },
+            "replace": {
+                "rhumsaa/uuid": "self.version"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1",
+                "codeception/aspect-mock": "^1.0 | ^2.0",
+                "doctrine/annotations": "~1.2.0",
+                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ^2.1",
+                "ircmaxell/random-lib": "^1.1",
+                "jakub-onderka/php-parallel-lint": "^0.9.0",
+                "mockery/mockery": "^0.9.4",
+                "moontoast/math": "^1.1",
+                "php-mock/php-mock-phpunit": "^0.3|^1.1",
+                "phpunit/phpunit": "^4.7|>=5.0 <5.4",
+                "satooshi/php-coveralls": "^0.6.1",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
+                "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
+                "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
+                "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
+                "ramsey/uuid-console": "A console application for generating UUIDs with ramsey/uuid",
+                "ramsey/uuid-doctrine": "Allows the use of Ramsey\\Uuid\\Uuid as Doctrine field type."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ramsey\\Uuid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marijn Huizendveld",
+                    "email": "marijn.huizendveld@gmail.com"
+                },
+                {
+                    "name": "Thibaud Fabre",
+                    "email": "thibaud@aztech.io"
+                },
+                {
+                    "name": "Ben Ramsey",
+                    "email": "ben@benramsey.com",
+                    "homepage": "https://benramsey.com"
+                }
+            ],
+            "description": "Formerly rhumsaa/uuid. A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
+            "homepage": "https://github.com/ramsey/uuid",
+            "keywords": [
+                "guid",
+                "identifier",
+                "uuid"
+            ],
+            "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v5.0.21",
             "source": {
@@ -4903,6 +4985,62 @@
             "time": "2017-03-26T11:55:59+00:00"
         },
         {
+            "name": "symfony/polyfill-apcu",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-apcu.git",
+                "reference": "04f62674339602def515bff4bc6901fc1d4951e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-apcu/zipball/04f62674339602def515bff4bc6901fc1d4951e8",
+                "reference": "04f62674339602def515bff4bc6901fc1d4951e8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Apcu\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting apcu_* functions to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "apcu",
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2017-10-11T12:05:26+00:00"
+        },
+        {
             "name": "symfony/polyfill-iconv",
             "version": "v1.4.0",
             "source": {
@@ -5136,16 +5274,16 @@
         },
         {
             "name": "symfony/polyfill-php70",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php70.git",
-                "reference": "032fd647d5c11a9ceab8ee8747e13b5448e93874"
+                "reference": "b6482e68974486984f59449ecea1fbbb22ff840f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/032fd647d5c11a9ceab8ee8747e13b5448e93874",
-                "reference": "032fd647d5c11a9ceab8ee8747e13b5448e93874",
+                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/b6482e68974486984f59449ecea1fbbb22ff840f",
+                "reference": "b6482e68974486984f59449ecea1fbbb22ff840f",
                 "shasum": ""
             },
             "require": {
@@ -5155,7 +5293,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -5191,7 +5329,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-09T14:24:12+00:00"
+            "time": "2017-06-14T15:44:48+00:00"
         },
         {
             "name": "symfony/polyfill-util",
@@ -5306,16 +5444,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.8",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "645d24a119bc7b8326bb01e7b5b696bc3be337ec"
+                "reference": "9b0226340705f75fd0cebd220746a36050ead8a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/645d24a119bc7b8326bb01e7b5b696bc3be337ec",
-                "reference": "645d24a119bc7b8326bb01e7b5b696bc3be337ec",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9b0226340705f75fd0cebd220746a36050ead8a9",
+                "reference": "9b0226340705f75fd0cebd220746a36050ead8a9",
                 "shasum": ""
             },
             "require": {
@@ -5328,6 +5466,7 @@
                 "psr/link": "^1.0",
                 "psr/log": "~1.0",
                 "psr/simple-cache": "^1.0",
+                "symfony/polyfill-apcu": "~1.1",
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
                 "symfony/polyfill-php56": "~1.0",
@@ -5337,7 +5476,7 @@
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0||>=3.2.0,<3.2.2",
-                "phpdocumentor/type-resolver": "<0.2.0",
+                "phpdocumentor/type-resolver": "<0.2.1",
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
             },
             "provide": {
@@ -5399,6 +5538,7 @@
             },
             "require-dev": {
                 "cache/integration-tests": "dev-master",
+                "doctrine/annotations": "~1.0",
                 "doctrine/cache": "~1.6",
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
@@ -5411,7 +5551,6 @@
                 "predis/predis": "~1.0",
                 "sensio/framework-extra-bundle": "^3.0.2",
                 "symfony/phpunit-bridge": "~3.2",
-                "symfony/polyfill-apcu": "~1.1",
                 "symfony/security-acl": "~2.8|~3.0"
             },
             "type": "library",
@@ -5455,7 +5594,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-08-28T22:35:20+00:00"
+            "time": "2017-11-16T18:15:01+00:00"
         },
         {
             "name": "twig/extensions",
@@ -6993,47 +7132,6 @@
             "time": "2017-07-10T21:28:32+00:00"
         },
         {
-            "name": "friends-of-behat/performance-extension",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfBehat/PerformanceExtension.git",
-                "reference": "f772fec1544fcb887e85ce9c1e546f1e3361b375"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfBehat/PerformanceExtension/zipball/f772fec1544fcb887e85ce9c1e546f1e3361b375",
-                "reference": "f772fec1544fcb887e85ce9c1e546f1e3361b375",
-                "shasum": ""
-            },
-            "require": {
-                "behat/behat": "^3.1",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "friends-of-behat/test-context": "^0.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "FriendsOfBehat\\PerformanceExtension\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kamil Kokot",
-                    "email": "kamil@kokot.me",
-                    "homepage": "http://kamil.kokot.me"
-                }
-            ],
-            "description": "Accelerates Behat using features available only for newer PHP versions.",
-            "time": "2017-07-10T20:23:25+00:00"
-        },
-        {
             "name": "friends-of-behat/service-container-extension",
             "version": "v1.0.0",
             "source": {
@@ -7173,16 +7271,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.6.0",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "5642a36a60c11cdd01488d192541a89bb44a4abf"
+                "reference": "ab2e189d94698178988f9732bc75bb4ce8d16f77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/5642a36a60c11cdd01488d192541a89bb44a4abf",
-                "reference": "5642a36a60c11cdd01488d192541a89bb44a4abf",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ab2e189d94698178988f9732bc75bb4ce8d16f77",
+                "reference": "ab2e189d94698178988f9732bc75bb4ce8d16f77",
                 "shasum": ""
             },
             "require": {
@@ -7191,8 +7289,8 @@
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "gecko-packages/gecko-php-unit": "^2.0",
-                "php": "^5.6 || >=7.0 <7.2",
-                "sebastian/diff": "^1.4",
+                "php": "^5.6 || >=7.0 <7.3",
+                "php-cs-fixer/diff": "^1.0",
                 "symfony/console": "^3.2",
                 "symfony/event-dispatcher": "^3.0",
                 "symfony/filesystem": "^3.0",
@@ -7222,11 +7320,6 @@
                 "php-cs-fixer"
             ],
             "type": "application",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.6-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "PhpCsFixer\\": "src/"
@@ -7254,7 +7347,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-09-11T15:23:20+00:00"
+            "time": "2017-10-02T12:16:05+00:00"
         },
         {
             "name": "gecko-packages/gecko-php-unit",
@@ -8667,6 +8760,54 @@
             "time": "2016-05-06T08:34:42+00:00"
         },
         {
+            "name": "php-cs-fixer/diff",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/diff.git",
+                "reference": "f0ef6133d674137e902fdf8a6f2e8e97e14a087b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/diff/zipball/f0ef6133d674137e902fdf8a6f2e8e97e14a087b",
+                "reference": "f0ef6133d674137e902fdf8a6f2e8e97e14a087b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.4.3",
+                "symfony/process": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Kore Nordmann",
+                    "email": "mail@kore-nordmann.de"
+                },
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
+                    "name": "SpacePossum"
+                }
+            ],
+            "description": "sebastian/diff v2 backport support for PHP5.6",
+            "homepage": "https://github.com/PHP-CS-Fixer",
+            "keywords": [
+                "diff"
+            ],
+            "time": "2017-10-19T09:58:18+00:00"
+        },
+        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0",
             "source": {
@@ -8852,22 +8993,22 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "4.0.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "f6b26bd9cb2b69894a818cf570feeabc7c8f5655"
+                "reference": "e5cd03ab0b2de7a8ce411c9ff18cd17c3a2a7ed2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/f6b26bd9cb2b69894a818cf570feeabc7c8f5655",
-                "reference": "f6b26bd9cb2b69894a818cf570feeabc7c8f5655",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/e5cd03ab0b2de7a8ce411c9ff18cd17c3a2a7ed2",
+                "reference": "e5cd03ab0b2de7a8ce411c9ff18cd17c3a2a7ed2",
                 "shasum": ""
             },
             "require": {
                 "doctrine/instantiator": "^1.0.5",
                 "ext-tokenizer": "*",
-                "php": "^7.0,<7.2",
+                "php": "^7.0,<7.3",
                 "phpspec/php-diff": "^1.0.0",
                 "phpspec/prophecy": "^1.5",
                 "sebastian/exporter": "^1.0 || ^2.0 || ^3.0",
@@ -8929,7 +9070,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2017-07-29T17:27:35+00:00"
+            "time": "2017-10-18T06:48:25+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -9383,45 +9524,6 @@
                 "xunit"
             ],
             "time": "2017-06-30T09:13:00+00:00"
-        },
-        {
-            "name": "se/selenium-server-standalone",
-            "version": "v2.53.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sveneisenschmidt/selenium-server-standalone.git",
-                "reference": "ef4eea9c99efb9c0e3084e9cae625662ccd43361"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sveneisenschmidt/selenium-server-standalone/zipball/ef4eea9c99efb9c0e3084e9cae625662ccd43361",
-                "reference": "ef4eea9c99efb9c0e3084e9cae625662ccd43361",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "bin": [
-                "bin/selenium-server-standalone"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache 2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Sven Eisenschmidt",
-                    "email": "sven.eisenschmidt@gmail.com"
-                }
-            ],
-            "description": "Composer distribution of Selenium Server Standalone, the browser automation framework. Adds a executable to your composer bin directory.",
-            "homepage": "https://github.com/sveneisenschmidt/selenium-server-standalone",
-            "keywords": [
-                "selenium",
-                "testing"
-            ],
-            "time": "2016-07-01T14:16:52+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9938,16 +10040,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "3.3.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "84c2f64f0ef800d93711c7e0d1993d7a715ab0b7"
+                "reference": "bab653d0f7f2e3ed13796f7803067d252f00a25a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/84c2f64f0ef800d93711c7e0d1993d7a715ab0b7",
-                "reference": "84c2f64f0ef800d93711c7e0d1993d7a715ab0b7",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/bab653d0f7f2e3ed13796f7803067d252f00a25a",
+                "reference": "bab653d0f7f2e3ed13796f7803067d252f00a25a",
                 "shasum": ""
             },
             "require": {
@@ -9960,7 +10062,7 @@
                 "phpstan/phpstan": "0.8.4",
                 "phpunit/phpunit": "6.3.0"
             },
-            "type": "library",
+            "type": "phpcodesniffer-standard",
             "autoload": {
                 "psr-4": {
                     "SlevomatCodingStandard\\": "SlevomatCodingStandard"
@@ -9970,21 +10072,21 @@
             "license": [
                 "MIT"
             ],
-            "description": "Slevomat Coding Standard for PHP_CodeSniffer extends Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2017-08-25T15:10:17+00:00"
+            "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
+            "time": "2017-09-15T17:47:36+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "c7594a88ae75401e8f8d0bd4deb8431b39045c51"
+                "reference": "3c2d0a0fe39684ba0c1eb842a6a775d0b938d699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c7594a88ae75401e8f8d0bd4deb8431b39045c51",
-                "reference": "c7594a88ae75401e8f8d0bd4deb8431b39045c51",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/3c2d0a0fe39684ba0c1eb842a6a775d0b938d699",
+                "reference": "3c2d0a0fe39684ba0c1eb842a6a775d0b938d699",
                 "shasum": ""
             },
             "require": {
@@ -9994,7 +10096,7 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
             },
             "bin": [
                 "bin/phpcs",
@@ -10022,7 +10124,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-07-18T01:12:32+00:00"
+            "time": "2017-09-19T22:47:14+00:00"
         },
         {
             "name": "stripe/stripe-php",
@@ -10078,6 +10180,39 @@
                 "stripe"
             ],
             "time": "2017-06-20T01:39:06+00:00"
+        },
+        {
+            "name": "sylius-labs/coding-standard",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SyliusLabs/CodingStandard.git",
+                "reference": "e50212b2be8f1e5984c69b9bdf205b32daa06688"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SyliusLabs/CodingStandard/zipball/e50212b2be8f1e5984c69b9bdf205b32daa06688",
+                "reference": "e50212b2be8f1e5984c69b9bdf205b32daa06688",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "symplify/easy-coding-standard": "^2.4"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kamil Kokot",
+                    "email": "kamil@kokot.me",
+                    "homepage": "http://kamil.kokot.me"
+                }
+            ],
+            "description": "Battle-tested coding standard configuration used in Sylius.",
+            "time": "2017-09-27T14:33:43+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -10136,26 +10271,26 @@
         },
         {
             "name": "symplify/coding-standard",
-            "version": "v2.3.3",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/CodingStandard.git",
-                "reference": "36b88e5560b104be754205a0f4d5fc4b6c436b51"
+                "reference": "6608353eb4bb382e7ca6da04c67996c4f379536e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/CodingStandard/zipball/36b88e5560b104be754205a0f4d5fc4b6c436b51",
-                "reference": "36b88e5560b104be754205a0f4d5fc4b6c436b51",
+                "url": "https://api.github.com/repos/Symplify/CodingStandard/zipball/6608353eb4bb382e7ca6da04c67996c4f379536e",
+                "reference": "6608353eb4bb382e7ca6da04c67996c4f379536e",
                 "shasum": ""
             },
             "require": {
-                "friendsofphp/php-cs-fixer": "^2.5",
+                "friendsofphp/php-cs-fixer": "^2.6",
                 "nette/finder": "^2.4|^3.0",
                 "nette/utils": "^2.4|^3.0",
                 "nikic/php-parser": "^3.1",
                 "php": "^7.1",
-                "slevomat/coding-standard": "^3.3",
-                "squizlabs/php_codesniffer": "^3.0.2"
+                "slevomat/coding-standard": "^4.0",
+                "squizlabs/php_codesniffer": "^3.1"
             },
             "require-dev": {
                 "gecko-packages/gecko-php-unit": "3.0 as 2.2",
@@ -10168,7 +10303,7 @@
             "autoload": {
                 "psr-4": {
                     "Symplify\\CodingStandard\\": "src",
-                    "Symplify\\CodingStandard\\TokenWrapper\\": "packages/TokenWrapper/src",
+                    "Symplify\\CodingStandard\\SniffTokenWrapper\\": "packages/SniffTokenWrapper/src",
                     "Symplify\\CodingStandard\\FixerTokenWrapper\\": "packages/FixerTokenWrapper/src"
                 }
             },
@@ -10177,32 +10312,32 @@
                 "MIT"
             ],
             "description": "Set of Symplify rules for PHP_CodeSniffer.",
-            "time": "2017-09-09T15:11:00+00:00"
+            "time": "2017-09-22T22:21:36+00:00"
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "v2.3.3",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/EasyCodingStandard.git",
-                "reference": "96b728041544edb6f3dd07dee3b58e26a64187db"
+                "reference": "becc9bdfd07493ac53122088eaf859d56d41dae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/EasyCodingStandard/zipball/96b728041544edb6f3dd07dee3b58e26a64187db",
-                "reference": "96b728041544edb6f3dd07dee3b58e26a64187db",
+                "url": "https://api.github.com/repos/Symplify/EasyCodingStandard/zipball/becc9bdfd07493ac53122088eaf859d56d41dae1",
+                "reference": "becc9bdfd07493ac53122088eaf859d56d41dae1",
                 "shasum": ""
             },
             "require": {
-                "friendsofphp/php-cs-fixer": "^2.5",
+                "friendsofphp/php-cs-fixer": "^2.6",
                 "nette/caching": "^2.4|^3.0",
                 "nette/neon": "^2.4|^3.0",
                 "nette/robot-loader": "^2.4|^3.0.1",
                 "nette/utils": "^2.4|^3.0",
                 "php": "^7.1",
                 "sebastian/diff": "^1.4|^2.0",
-                "slevomat/coding-standard": "^3.3",
-                "squizlabs/php_codesniffer": "^3.0.2",
+                "slevomat/coding-standard": "^4.0",
+                "squizlabs/php_codesniffer": "^3.1",
                 "symfony/config": "^3.3",
                 "symfony/console": "^3.3",
                 "symfony/dependency-injection": "^3.3",
@@ -10238,20 +10373,20 @@
                 "MIT"
             ],
             "description": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer.",
-            "time": "2017-09-08T22:40:59+00:00"
+            "time": "2017-09-21T15:34:11+00:00"
         },
         {
             "name": "symplify/package-builder",
-            "version": "v2.3.3",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/PackageBuilder.git",
-                "reference": "f66602b4bdba3031b7670d418f63638259e19f13"
+                "reference": "5a9755f7a4aac6880a3f34e09237e48b6bac8c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/PackageBuilder/zipball/f66602b4bdba3031b7670d418f63638259e19f13",
-                "reference": "f66602b4bdba3031b7670d418f63638259e19f13",
+                "url": "https://api.github.com/repos/Symplify/PackageBuilder/zipball/5a9755f7a4aac6880a3f34e09237e48b6bac8c7d",
+                "reference": "5a9755f7a4aac6880a3f34e09237e48b6bac8c7d",
                 "shasum": ""
             },
             "require": {
@@ -10280,7 +10415,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2017-08-28T11:44:47+00:00"
+            "time": "2017-09-19T17:58:21+00:00"
         },
         {
             "name": "tracy/tracy",

@@ -22,9 +22,6 @@ use Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinderInterface;
 use Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerInterface;
 use Symfony\Component\Templating\TemplateReferenceInterface;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class TemplatePathsCacheWarmer implements CacheWarmerInterface
 {
     /**
@@ -120,6 +117,6 @@ final class TemplatePathsCacheWarmer implements CacheWarmerInterface
      */
     private function getCacheKey(TemplateReferenceInterface $template, ThemeInterface $theme): string
     {
-        return $template->getLogicalName().'|'.$theme->getName();
+        return $template->getLogicalName() . '|' . $theme->getName();
     }
 }

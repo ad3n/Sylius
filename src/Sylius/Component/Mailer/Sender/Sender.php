@@ -18,32 +18,27 @@ use Sylius\Component\Mailer\Provider\EmailProviderInterface;
 use Sylius\Component\Mailer\Renderer\Adapter\AdapterInterface as RendererAdapterInterface;
 use Sylius\Component\Mailer\Sender\Adapter\AdapterInterface as SenderAdapterInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Jérémy Leherpeur <jeremy@leherpeur.net>
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
- */
 final class Sender implements SenderInterface
 {
     /**
      * @var RendererAdapterInterface
      */
-    protected $rendererAdapter;
+    private $rendererAdapter;
 
     /**
      * @var SenderAdapterInterface
      */
-    protected $senderAdapter;
+    private $senderAdapter;
 
     /**
      * @var EmailProviderInterface
      */
-    protected $provider;
+    private $provider;
 
     /**
      * @var DefaultSettingsProviderInterface
      */
-    protected $defaultSettingsProvider;
+    private $defaultSettingsProvider;
 
     /**
      * @param RendererAdapterInterface $rendererAdapter

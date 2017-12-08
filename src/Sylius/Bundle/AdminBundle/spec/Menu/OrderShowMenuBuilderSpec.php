@@ -24,9 +24,6 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\OrderTransitions;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class OrderShowMenuBuilderSpec extends ObjectBehavior
 {
     function let(
@@ -52,7 +49,7 @@ final class OrderShowMenuBuilderSpec extends ObjectBehavior
         $menu
             ->addChild('order_history', [
                 'route' => 'sylius_admin_order_history',
-                'routeParameters' => ['id' => 7]
+                'routeParameters' => ['id' => 7],
             ])
             ->shouldBeCalled()
             ->willReturn($menu)
@@ -67,7 +64,7 @@ final class OrderShowMenuBuilderSpec extends ObjectBehavior
         $menu
             ->addChild('cancel', [
                 'route' => 'sylius_admin_order_cancel',
-                'routeParameters' => ['id' => 7]
+                'routeParameters' => ['id' => 7],
             ])
             ->shouldBeCalled()
             ->willReturn($menu)
@@ -100,7 +97,7 @@ final class OrderShowMenuBuilderSpec extends ObjectBehavior
         $menu
             ->addChild('order_history', [
                 'route' => 'sylius_admin_order_history',
-                'routeParameters' => ['id' => 7]
+                'routeParameters' => ['id' => 7],
             ])
             ->shouldBeCalled()
             ->willReturn($menu)

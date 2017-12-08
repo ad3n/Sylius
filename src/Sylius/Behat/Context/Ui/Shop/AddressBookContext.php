@@ -26,10 +26,6 @@ use Sylius\Component\Core\Model\AddressInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Anna Walasek <anna.walasek@lakion.com>
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 final class AddressBookContext implements Context
 {
     /**
@@ -401,7 +397,7 @@ final class AddressBookContext implements Context
             ->currentPageResolver
             ->getCurrentPageWithForm([
                 $this->addressBookCreatePage,
-                $this->addressBookUpdatePage
+                $this->addressBookUpdatePage,
         ]);
     }
 }

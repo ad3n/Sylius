@@ -24,9 +24,6 @@ use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 class CompletePage extends SymfonyPage implements CompletePageInterface
 {
     /**
@@ -329,7 +326,7 @@ class CompletePage extends SymfonyPage implements CompletePageInterface
             'billing_address' => '#sylius-billing-address',
             'confirm_button' => 'form button',
             'currency' => '#sylius-order-currency-code',
-            'extra_notes' =>'#sylius_checkout_complete_notes',
+            'extra_notes' => '#sylius_checkout_complete_notes',
             'items_table' => '#sylius-order',
             'locale' => '#sylius-order-locale-name',
             'order_total' => 'td:contains("Total")',

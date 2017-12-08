@@ -21,9 +21,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @author Arnaud Langlade <arn0d.dev@gmail.com>
- */
 abstract class AbstractConfigurationCollectionType extends AbstractType
 {
     /**
@@ -69,7 +66,7 @@ abstract class AbstractConfigurationCollectionType extends AbstractType
         $view->vars['prototypes'] = [];
 
         foreach ($form->getConfig()->getAttribute('prototypes') as $type => $prototype) {
-            /* @var FormInterface $prototype */
+            /** @var FormInterface $prototype */
             $view->vars['prototypes'][$type] = $prototype->createView($view);
         }
     }

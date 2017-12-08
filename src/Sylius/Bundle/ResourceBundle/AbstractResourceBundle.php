@@ -22,10 +22,6 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-/**
- * @author Arnaud Langlade <arn0d.dev@gmail.com>
- * @author Gustavo Perdomo <gperdomor@gmail.com>
- */
 abstract class AbstractResourceBundle extends Bundle implements ResourceBundleInterface
 {
     /**
@@ -59,8 +55,8 @@ abstract class AbstractResourceBundle extends Bundle implements ResourceBundleIn
                                 [$this->getObjectManagerParameter()],
                                 sprintf('%s.driver.%s', $this->getBundlePrefix(), $driver)
                             ));
-                            break;
 
+                            break;
                         case ResourceBundleInterface::MAPPING_ANNOTATION:
                             $container->addCompilerPass($compilerPassClassName::$compilerPassMethod(
                                 [$this->getModelNamespace()],
@@ -120,12 +116,15 @@ abstract class AbstractResourceBundle extends Bundle implements ResourceBundleIn
         switch ($driverType) {
             case SyliusResourceBundle::DRIVER_DOCTRINE_MONGODB_ODM:
                 $mappingsPassClassname = DoctrineMongoDBMappingsPass::class;
+
                 break;
             case SyliusResourceBundle::DRIVER_DOCTRINE_ORM:
                 $mappingsPassClassname = DoctrineOrmMappingsPass::class;
+
                 break;
             case SyliusResourceBundle::DRIVER_DOCTRINE_PHPCR_ODM:
                 $mappingsPassClassname = DoctrinePhpcrMappingsPass::class;
+
                 break;
             default:
                 throw new UnknownDriverException($driverType);

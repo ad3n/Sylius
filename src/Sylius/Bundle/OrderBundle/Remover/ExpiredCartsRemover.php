@@ -20,9 +20,6 @@ use Sylius\Component\Order\Repository\OrderRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class ExpiredCartsRemover implements ExpiredCartsRemoverInterface
 {
     /**
@@ -65,7 +62,7 @@ final class ExpiredCartsRemover implements ExpiredCartsRemoverInterface
 
     public function remove(): void
     {
-        $expiredCarts = $this->orderRepository->findCartsNotModifiedSince(new \DateTime('-'.$this->expirationPeriod));
+        $expiredCarts = $this->orderRepository->findCartsNotModifiedSince(new \DateTime('-' . $this->expirationPeriod));
 
         $this->eventDispatcher->dispatch(SyliusExpiredCartsEvents::PRE_REMOVE, new GenericEvent($expiredCarts));
 

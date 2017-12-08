@@ -22,9 +22,6 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
- */
 final class InstallerContext implements Context
 {
     /**
@@ -58,6 +55,7 @@ final class InstallerContext implements Context
     private $inputChoices = [
         'currency' => 'USD',
         'e-mail' => 'test@email.com',
+        'username' => 'test',
         'password' => 'pswd',
         'confirmation' => 'pswd',
     ];
@@ -141,6 +139,7 @@ final class InstallerContext implements Context
     public function iProvideFullAdministratorData()
     {
         $this->inputChoices['e-mail'] = 'test@admin.com';
+        $this->inputChoices['username'] = 'test';
         $this->inputChoices['password'] = 'pswd1$';
         $this->inputChoices['confirmation'] = $this->inputChoices['password'];
     }
@@ -150,7 +149,7 @@ final class InstallerContext implements Context
      *
      * @return resource
      */
-    protected function getInputStream($input)
+    private function getInputStream($input)
     {
         $stream = fopen('php://memory', 'rb+', false);
         fwrite($stream, $input);
@@ -166,7 +165,7 @@ final class InstallerContext implements Context
     {
         $this->questionHelper = $this->command->getHelper('question');
         $inputString = implode(PHP_EOL, $this->inputChoices);
-        $this->questionHelper->setInputStream($this->getInputStream($inputString.PHP_EOL));
+        $this->questionHelper->setInputStream($this->getInputStream($inputString . PHP_EOL));
 
         try {
             $this->tester->execute(['command' => $name]);
@@ -180,7 +179,7 @@ final class InstallerContext implements Context
     private function iExecuteCommandAndConfirm($name)
     {
         $this->questionHelper = $this->command->getHelper('question');
-        $inputString = 'y'.PHP_EOL;
+        $inputString = 'y' . PHP_EOL;
         $this->questionHelper->setInputStream($this->getInputStream($inputString));
 
         try {

@@ -15,15 +15,12 @@ namespace Sylius\Bundle\CoreBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 
-/**
- * @author Gustavo Perdomo <gperdomor@gmail.com>
- */
 final class HasEnabledEntity extends Constraint
 {
     /**
      * @var string|null
      */
-    public $objectManager = null;
+    public $objectManager;
 
     /**
      * @var string
@@ -38,7 +35,7 @@ final class HasEnabledEntity extends Constraint
     /**
      * @var string|null
      */
-    public $errorPath = null;
+    public $errorPath;
 
     /**
      * @var string

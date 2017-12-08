@@ -17,9 +17,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class CommandDirectoryChecker
 {
     /**
@@ -40,9 +37,6 @@ final class CommandDirectoryChecker
         $this->filesystem = $filesystem;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function ensureDirectoryExists($directory, OutputInterface $output): void
     {
         if (is_dir($directory)) {
@@ -66,9 +60,6 @@ final class CommandDirectoryChecker
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function ensureDirectoryIsWritable($directory, OutputInterface $output): void
     {
         if (is_writable($directory)) {

@@ -22,10 +22,6 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
- */
 final class SyliusResourceExtension extends Extension
 {
     /**
@@ -34,7 +30,7 @@ final class SyliusResourceExtension extends Extension
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.xml');
 

@@ -19,9 +19,6 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 class StickerProductFixture extends AbstractFixture
 {
     /**
@@ -101,8 +98,8 @@ class StickerProductFixture extends AbstractFixture
                 [
                     'code' => 'stickers',
                     'name' => 'Stickers',
-                ]
-            ]
+                ],
+            ],
         ]]]);
 
         $this->productAttributeFixture->load(['custom' => [

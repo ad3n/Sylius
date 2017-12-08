@@ -17,9 +17,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class ChannelFormSubscriber implements EventSubscriberInterface
 {
     /**
@@ -44,12 +41,12 @@ final class ChannelFormSubscriber implements EventSubscriberInterface
         }
 
         $data['locales'] = $this->resolveLocales(
-            isset($data['locales']) ? $data['locales'] : [],
+            $data['locales'] ?? [],
             $data['defaultLocale'])
         ;
 
         $data['currencies'] = $this->resolveCurrencies(
-            isset($data['currencies']) ? $data['currencies'] : [],
+            $data['currencies'] ?? [],
             $data['baseCurrency'])
         ;
 

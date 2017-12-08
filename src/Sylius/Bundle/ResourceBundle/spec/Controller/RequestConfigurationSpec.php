@@ -20,10 +20,6 @@ use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Arnaud Langade <arn0d.dev@gmail.com>
- */
 final class RequestConfigurationSpec extends ObjectBehavior
 {
     function let(MetadataInterface $metadata, Request $request, Parameters $parameters): void
@@ -115,7 +111,7 @@ final class RequestConfigurationSpec extends ObjectBehavior
         $metadata->getApplicationName()->willReturn('sylius');
         $metadata->getName()->willReturn('product');
 
-        $parameters->get('form')->willReturn(['type'=> 'sylius_product', 'options' => ['validation_groups' => ['sylius']]]);
+        $parameters->get('form')->willReturn(['type' => 'sylius_product', 'options' => ['validation_groups' => ['sylius']]]);
         $this->getFormType()->shouldReturn('sylius_product');
         $this->getFormOptions()->shouldReturn(['validation_groups' => ['sylius']]);
     }

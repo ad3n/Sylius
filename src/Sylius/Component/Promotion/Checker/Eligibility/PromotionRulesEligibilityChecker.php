@@ -19,9 +19,6 @@ use Sylius\Component\Promotion\Model\PromotionRuleInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class PromotionRulesEligibilityChecker implements PromotionEligibilityCheckerInterface
 {
     /**
@@ -61,7 +58,7 @@ final class PromotionRulesEligibilityChecker implements PromotionEligibilityChec
      *
      * @return bool
      */
-    protected function isEligibleToRule(PromotionSubjectInterface $subject, PromotionRuleInterface $rule): bool
+    private function isEligibleToRule(PromotionSubjectInterface $subject, PromotionRuleInterface $rule): bool
     {
         /** @var RuleCheckerInterface $checker */
         $checker = $this->ruleRegistry->get($rule->getType());

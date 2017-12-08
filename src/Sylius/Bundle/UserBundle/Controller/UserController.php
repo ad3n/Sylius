@@ -34,10 +34,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 class UserController extends ResourceController
 {
     /**
@@ -197,8 +193,17 @@ class UserController extends ResourceController
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
         $redirectRoute = $this->getSyliusAttribute($request, 'redirect', 'referer');
 
-        /** @var UserInterface $user */
-        $user = $this->container->get('sylius.context.customer')->getCustomer()->getUser();
+        $user = $this->getUser();
+        if (null === $user) {
+            if (!$configuration->isHtmlRequest()) {
+                return $this->viewHandler->handle($configuration, View::create($configuration, Response::HTTP_UNAUTHORIZED));
+            }
+
+            $this->addFlash('notice', 'sylius.user.verify_no_user');
+
+            return $this->redirectHandler->redirectToRoute($configuration, $redirectRoute);
+        }
+
         if (null !== $user->getVerifiedAt()) {
             if (!$configuration->isHtmlRequest()) {
                 return $this->viewHandler->handle($configuration, View::create($configuration, Response::HTTP_BAD_REQUEST));
@@ -349,7 +354,7 @@ class UserController extends ResourceController
         $user->setPasswordResetToken($generator->generate());
         $user->setPasswordRequestedAt(new \DateTime());
 
-        /* I have to use doctrine manager directly, because domain manager functions add a flash messages. I can't get rid of them.*/
+        // I have to use doctrine manager directly, because domain manager functions add a flash messages. I can't get rid of them.
         $manager = $this->container->get('doctrine.orm.default_entity_manager');
         $manager->persist($user);
         $manager->flush();
@@ -426,6 +431,24 @@ class UserController extends ResourceController
         Assert::notNull($redirectRouteName, 'Redirect is not configured.');
 
         return new RedirectResponse($this->container->get('router')->generate($redirectRouteName));
+    }
+
+    /**
+     * @return UserInterface|null
+     */
+    protected function getUser(): ?UserInterface
+    {
+        $user = parent::getUser();
+        $authorizationChecker = $this->container->get('security.authorization_checker');
+
+        if (
+            $authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
+            $user instanceof UserInterface
+        ) {
+            return $user;
+        }
+
+        return null;
     }
 
     /**

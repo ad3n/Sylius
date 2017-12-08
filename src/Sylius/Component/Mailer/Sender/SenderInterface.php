@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Sylius\Component\Mailer\Sender;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 interface SenderInterface
 {
     /**
@@ -23,6 +20,7 @@ interface SenderInterface
      * @param array $recipients
      * @param array $data
      * @param array $attachments
+     * @param array $replyTo
      */
     public function send(string $code, array $recipients, array $data = [], array $attachments = [], array $replyTo = []): void;
 }

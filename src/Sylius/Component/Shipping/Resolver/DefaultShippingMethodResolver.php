@@ -18,9 +18,6 @@ use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShippingMethodInterface;
 use Sylius\Component\Shipping\Repository\ShippingMethodRepositoryInterface;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class DefaultShippingMethodResolver implements DefaultShippingMethodResolverInterface
 {
     /**
@@ -45,7 +42,7 @@ final class DefaultShippingMethodResolver implements DefaultShippingMethodResolv
         if (empty($shippingMethods)) {
             throw new UnresolvedDefaultShippingMethodException();
         }
-        
+
         return $shippingMethods[0];
     }
 }

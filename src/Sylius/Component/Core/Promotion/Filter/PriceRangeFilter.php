@@ -17,9 +17,6 @@ use Sylius\Component\Core\Calculator\ProductVariantPriceCalculatorInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class PriceRangeFilter implements FilterInterface
 {
     /**
@@ -67,7 +64,7 @@ final class PriceRangeFilter implements FilterInterface
         $price = $this->productVariantPriceCalculator->calculate($variant, ['channel' => $configuration['channel']]);
 
         $priceRange = $configuration['filters']['price_range_filter'];
-        if (isset($priceRange['min']) && isset($priceRange['max'])) {
+        if (isset($priceRange['min'], $priceRange['max'])) {
             return $priceRange['min'] <= $price && $priceRange['max'] >= $price;
         }
 

@@ -26,11 +26,6 @@ use Sylius\Component\Resource\Model\TranslationInterface;
 use Sylius\Component\Resource\Translation\TranslatableEntityLocaleAssignerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-/**
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
- * @author Prezent Internet B.V. <info@prezent.nl>
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class ORMTranslatableListener implements EventSubscriber
 {
     /**
@@ -123,7 +118,7 @@ final class ORMTranslatableListener implements EventSubscriber
         }
 
         /** @var MetadataInterface $translationResourceMetadata */
-        $translationResourceMetadata = $this->resourceMetadataRegistry->get($resourceMetadata->getAlias().'_translation');
+        $translationResourceMetadata = $this->resourceMetadataRegistry->get($resourceMetadata->getAlias() . '_translation');
 
         if (!$metadata->hasAssociation('translations')) {
             $metadata->mapOneToMany([
@@ -187,7 +182,7 @@ final class ORMTranslatableListener implements EventSubscriber
         if (!$this->hasUniqueConstraint($metadata, $columns)) {
             $constraints = $metadata->table['uniqueConstraints'] ?? [];
 
-            $constraints[$metadata->getTableName().'_uniq_trans'] = [
+            $constraints[$metadata->getTableName() . '_uniq_trans'] = [
                 'columns' => $columns,
             ];
 

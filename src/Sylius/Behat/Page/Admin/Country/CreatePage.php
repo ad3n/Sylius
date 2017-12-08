@@ -13,16 +13,11 @@ declare(strict_types=1);
 
 namespace Sylius\Behat\Page\Admin\Country;
 
-use Behat\Mink\Element\Element;
+use Behat\Mink\Element\NodeElement;
 use Sylius\Behat\Behaviour\ChoosesName;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
- */
 class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
     use ChoosesName;
@@ -55,9 +50,9 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
     }
 
     /**
-     * @return Element
+     * @return NodeElement
      */
-    private function getLastProvinceElement()
+    private function getLastProvinceElement(): NodeElement
     {
         $provinces = $this->getElement('provinces');
         $items = $provinces->findAll('css', 'div[data-form-collection="item"]');

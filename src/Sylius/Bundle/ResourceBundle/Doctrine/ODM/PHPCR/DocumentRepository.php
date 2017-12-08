@@ -22,9 +22,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 /**
  * Doctrine PHPCR-ODM driver document repository.
- *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author David Buchmann <mail@davidbu.ch>
  */
 class DocumentRepository extends BaseDocumentRepository implements RepositoryInterface
 {
@@ -113,7 +110,7 @@ class DocumentRepository extends BaseDocumentRepository implements RepositoryInt
     {
         foreach ($sorting as $property => $order) {
             if (!empty($order)) {
-                $queryBuilder->orderBy()->{$order}()->field('o.'.$property);
+                $queryBuilder->orderBy()->{$order}()->field('o.' . $property);
             }
         }
 
@@ -128,7 +125,7 @@ class DocumentRepository extends BaseDocumentRepository implements RepositoryInt
     protected function getPropertyName($name)
     {
         if (false === strpos($name, '.')) {
-            return $this->getAlias().'.'.$name;
+            return $this->getAlias() . '.' . $name;
         }
 
         return $name;

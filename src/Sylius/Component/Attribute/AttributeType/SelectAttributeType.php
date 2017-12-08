@@ -21,9 +21,6 @@ use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-/**
- * @author Laurent Paganin-Gioanni <l.paganin@algo-factory.com>
- */
 final class SelectAttributeType implements AttributeTypeInterface
 {
     public const TYPE = 'select';
@@ -85,7 +82,7 @@ final class SelectAttributeType implements AttributeTypeInterface
             new All([
                 new Type([
                     'type' => 'string',
-                ])
+                ]),
             ]),
         ];
 

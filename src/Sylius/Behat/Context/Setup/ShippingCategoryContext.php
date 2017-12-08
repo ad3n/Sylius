@@ -20,9 +20,6 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 
-/**
- * @author Anna Walasek <anna.walasek@lakion.com>
- */
 final class ShippingCategoryContext implements Context
 {
     /**
@@ -62,7 +59,7 @@ final class ShippingCategoryContext implements Context
     public function theStoreHasAndShippingCategory($firstShippingCategoryName, $secondShippingCategoryName = null)
     {
         $this->createShippingCategory($firstShippingCategoryName);
-        (null === $secondShippingCategoryName)? : $this->createShippingCategory($secondShippingCategoryName);
+        (null === $secondShippingCategoryName) ?: $this->createShippingCategory($secondShippingCategoryName);
     }
 
     /**
@@ -80,7 +77,7 @@ final class ShippingCategoryContext implements Context
     private function createShippingCategory($shippingCategoryName, $shippingCategoryCode = null)
     {
         /** @var ShippingCategoryInterface $shippingCategory */
-        $shippingCategory =  $this->shippingCategoryFactory->createNew();
+        $shippingCategory = $this->shippingCategoryFactory->createNew();
         $shippingCategory->setName($shippingCategoryName);
         $shippingCategory->setCode($shippingCategoryCode);
 

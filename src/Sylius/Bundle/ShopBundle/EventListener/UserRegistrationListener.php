@@ -25,9 +25,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 final class UserRegistrationListener
 {
     /**
@@ -126,6 +123,9 @@ final class UserRegistrationListener
     private function enableAndLogin(ShopUserInterface $user): void
     {
         $user->setEnabled(true);
+
+        $this->userManager->persist($user);
+        $this->userManager->flush();
 
         $this->userLogin->login($user, $this->firewallContextName);
     }

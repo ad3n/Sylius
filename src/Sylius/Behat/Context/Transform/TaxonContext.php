@@ -17,9 +17,6 @@ use Behat\Behat\Context\Context;
 use Sylius\Component\Taxonomy\Repository\TaxonRepositoryInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class TaxonContext implements Context
 {
     /**
@@ -77,7 +74,7 @@ final class TaxonContext implements Context
     {
         return [
             $this->getTaxonByName($firstTaxon),
-            $this->getTaxonByName($secondTaxon)
+            $this->getTaxonByName($secondTaxon),
         ];
     }
 }

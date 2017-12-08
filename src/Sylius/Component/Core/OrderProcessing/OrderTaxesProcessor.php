@@ -26,11 +26,6 @@ use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Sylius\Component\Registry\PrioritizedServiceRegistryInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- * @author Mark McKelvie <mark.mckelvie@reiss.com>
- */
 final class OrderTaxesProcessor implements OrderProcessorInterface
 {
     /**
@@ -86,6 +81,7 @@ final class OrderTaxesProcessor implements OrderProcessorInterface
         foreach ($this->strategyRegistry->all() as $strategy) {
             if ($strategy->supports($order, $zone)) {
                 $strategy->applyTaxes($order, $zone);
+
                 return;
             }
         }

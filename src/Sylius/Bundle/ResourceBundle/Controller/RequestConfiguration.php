@@ -17,11 +17,6 @@ use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Saša Stamenković <umpirsky@gmail.com>
- * @author Gustavo Perdomo <gperdomor@gmail.com>
- */
 class RequestConfiguration
 {
     /**
@@ -92,9 +87,9 @@ class RequestConfiguration
     }
 
     /**
-     * @param $name
+     * @param string $name
      *
-     * @return null|string
+     * @return string|null
      */
     public function getDefaultTemplate($name)
     {
@@ -108,7 +103,7 @@ class RequestConfiguration
     }
 
     /**
-     * @param $name
+     * @param string $name
      *
      * @return mixed|null
      */
@@ -165,15 +160,15 @@ class RequestConfiguration
      */
     public function getRouteName($name)
     {
-        $sectionPrefix = $this->getSection() ? $this->getSection().'_' : '';
+        $sectionPrefix = $this->getSection() ? $this->getSection() . '_' : '';
 
         return sprintf('%s_%s%s_%s', $this->metadata->getApplicationName(), $sectionPrefix, $this->metadata->getName(), $name);
     }
 
     /**
-     * @param $name
+     * @param string $name
      *
-     * @return mixed|null|string
+     * @return mixed|string|null
      */
     public function getRedirectRoute($name)
     {
@@ -207,7 +202,7 @@ class RequestConfiguration
             return '';
         }
 
-        return '#'.$redirect['hash'];
+        return '#' . $redirect['hash'];
     }
 
     /**
@@ -249,7 +244,7 @@ class RequestConfiguration
             $redirect = ['parameters' => []];
         }
 
-        $parameters = isset($redirect['parameters']) ? $redirect['parameters'] : [];
+        $parameters = $redirect['parameters'] ?? [];
         $parameters = $this->addExtraRedirectParameters($parameters);
 
         if (null !== $resource) {
@@ -376,7 +371,7 @@ class RequestConfiguration
     }
 
     /**
-     * @param $parameter
+     * @param string $parameter
      * @param array $defaults
      *
      * @return array
@@ -612,7 +607,7 @@ class RequestConfiguration
     {
         $options = $this->parameters->get('state_machine');
 
-        return isset($options['graph']) ? $options['graph'] : null;
+        return $options['graph'] ?? null;
     }
 
     /**
@@ -622,7 +617,7 @@ class RequestConfiguration
     {
         $options = $this->parameters->get('state_machine');
 
-        return isset($options['transition']) ? $options['transition'] : null;
+        return $options['transition'] ?? null;
     }
 
     /**

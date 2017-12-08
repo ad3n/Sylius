@@ -25,9 +25,6 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 class AddressExampleFactory extends AbstractExampleFactory
 {
     /**
@@ -175,6 +172,7 @@ class AddressExampleFactory extends AbstractExampleFactory
                 return;
             }
         }
+
         throw new \InvalidArgumentException(sprintf('Provided province code is not valid for "%s"', $country->getName()));
     }
 

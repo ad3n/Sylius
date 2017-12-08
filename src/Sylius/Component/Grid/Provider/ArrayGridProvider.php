@@ -17,9 +17,6 @@ use Sylius\Component\Grid\Definition\ArrayToDefinitionConverterInterface;
 use Sylius\Component\Grid\Definition\Grid;
 use Sylius\Component\Grid\Exception\UndefinedGridException;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class ArrayGridProvider implements GridProviderInterface
 {
     /**
@@ -34,7 +31,7 @@ final class ArrayGridProvider implements GridProviderInterface
     public function __construct(ArrayToDefinitionConverterInterface $converter, array $gridConfigurations)
     {
         foreach ($gridConfigurations as $code => $gridConfiguration) {
-            if (isset($gridConfiguration['extends']) && isset($gridConfigurations[$gridConfiguration['extends']])) {
+            if (isset($gridConfiguration['extends'], $gridConfigurations[$gridConfiguration['extends']])) {
                 $gridConfiguration = $this->extend($gridConfiguration, $gridConfigurations[$gridConfiguration['extends']]);
             }
 

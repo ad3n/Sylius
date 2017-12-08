@@ -16,9 +16,6 @@ namespace Sylius\Component\Addressing\Factory;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-/**
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 final class ZoneFactory implements ZoneFactoryInterface
 {
     /**
@@ -54,7 +51,7 @@ final class ZoneFactory implements ZoneFactoryInterface
      */
     public function createTyped(string $type): ZoneInterface
     {
-        /* @var ZoneInterface $zone */
+        /** @var ZoneInterface $zone */
         $zone = $this->createNew();
         $zone->setType($type);
 
@@ -66,7 +63,7 @@ final class ZoneFactory implements ZoneFactoryInterface
      */
     public function createWithMembers(array $membersCodes): ZoneInterface
     {
-        /* @var ZoneInterface $zone */
+        /** @var ZoneInterface $zone */
         $zone = $this->createNew();
         foreach ($membersCodes as $memberCode) {
             $zoneMember = $this->zoneMemberFactory->createNew();

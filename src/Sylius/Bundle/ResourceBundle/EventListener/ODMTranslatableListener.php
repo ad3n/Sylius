@@ -21,10 +21,6 @@ use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
 
-/**
- * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
- * @author Prezent Internet B.V. <info@prezent.nl>
- */
 final class ODMTranslatableListener implements EventSubscriber
 {
     /**
@@ -179,11 +175,11 @@ final class ODMTranslatableListener implements EventSubscriber
         $metadata = $this->mappings[$name];
 
         if (isset($metadata['fallback_locale'])) {
-            $setter = 'set'.ucfirst($metadata['fallback_locale']);
+            $setter = 'set' . ucfirst($metadata['fallback_locale']);
             $document->$setter($this->fallbackLocale);
         }
         if (isset($metadata['current_locale'])) {
-            $setter = 'set'.ucfirst($metadata['current_locale']);
+            $setter = 'set' . ucfirst($metadata['current_locale']);
             $document->$setter($this->currentLocale);
         }
     }

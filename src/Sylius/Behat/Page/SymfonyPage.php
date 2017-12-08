@@ -17,9 +17,6 @@ use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- */
 abstract class SymfonyPage extends Page implements SymfonyPageInterface
 {
     /**
@@ -103,7 +100,6 @@ abstract class SymfonyPage extends Page implements SymfonyPageInterface
         $this->verifyRouteParameters($requiredUrlParameters, $matchedRoute);
     }
 
-
     /**
      * @param array $matchedRoute
      * @param string $url
@@ -166,8 +162,8 @@ abstract class SymfonyPage extends Page implements SymfonyPageInterface
      */
     final protected function makePathAbsolute($path)
     {
-        $baseUrl = rtrim($this->getParameter('base_url'), '/').'/';
+        $baseUrl = rtrim($this->getParameter('base_url'), '/') . '/';
 
-        return 0 !== strpos($path, 'http') ? $baseUrl.ltrim($path, '/') : $path;
+        return 0 !== strpos($path, 'http') ? $baseUrl . ltrim($path, '/') : $path;
     }
 }

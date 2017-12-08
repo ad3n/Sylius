@@ -17,9 +17,6 @@ use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class OrderAdjustmentsClearer implements OrderProcessorInterface
 {
     /**
@@ -30,7 +27,7 @@ final class OrderAdjustmentsClearer implements OrderProcessorInterface
         AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT,
         AdjustmentInterface::ORDER_SHIPPING_PROMOTION_ADJUSTMENT,
         AdjustmentInterface::ORDER_UNIT_PROMOTION_ADJUSTMENT,
-        AdjustmentInterface::TAX_ADJUSTMENT
+        AdjustmentInterface::TAX_ADJUSTMENT,
     ];
 
     /**

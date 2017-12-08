@@ -19,9 +19,6 @@ use Sylius\Behat\Behaviour\SpecifiesItsCode;
 use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
 use Sylius\Component\Core\Formatter\StringInflector;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
     use SpecifiesItsCode;
@@ -73,7 +70,7 @@ class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function chooseCalculator($name)
     {
-        $this->getDocument()->selectFieldOption(\Calculator::class, $name);
+        $this->getDocument()->selectFieldOption('Calculator', $name);
     }
 
     /**

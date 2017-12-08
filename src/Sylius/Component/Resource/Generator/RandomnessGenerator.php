@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Sylius\Component\Resource\Generator;
 
-/**
- * @author Jan Góralski <jan.goralski@lakion.com>
- */
 final class RandomnessGenerator implements RandomnessGeneratorInterface
 {
     /**
@@ -34,9 +31,9 @@ final class RandomnessGenerator implements RandomnessGeneratorInterface
 
         $this->uriSafeAlphabet =
             implode(range(0, 9))
-            .implode(range('a', 'z'))
-            .implode(range('A', 'Z'))
-            .implode(['-', '_', '~'])
+            . implode(range('a', 'z'))
+            . implode(range('A', 'Z'))
+            . implode(['-', '_', '~'])
         ;
     }
 

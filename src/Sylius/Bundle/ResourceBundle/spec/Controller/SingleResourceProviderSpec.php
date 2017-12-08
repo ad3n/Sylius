@@ -21,9 +21,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class SingleResourceProviderSpec extends ObjectBehavior
 {
     function it_implements_single_resource_provider_interface(): void
@@ -128,7 +125,6 @@ final class SingleResourceProviderSpec extends ObjectBehavior
 
         $this->get($requestConfiguration, $repository)->shouldReturn($resource);
     }
-
 
     function it_can_find_specific_resource_with_merged_custom_criteria_overwriting_the_attributes(
         RequestConfiguration $requestConfiguration,

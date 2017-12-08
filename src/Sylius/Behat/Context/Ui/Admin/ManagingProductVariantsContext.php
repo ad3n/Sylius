@@ -26,10 +26,6 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
- */
 final class ManagingProductVariantsContext implements Context
 {
     /**
@@ -158,7 +154,7 @@ final class ManagingProductVariantsContext implements Context
      */
     public function iSetItsPriceTo($price = null, $channelName = null)
     {
-        $this->createPage->specifyPrice($price, (null === $channelName) ? $this->sharedStorage->get('channel') :$channelName);
+        $this->createPage->specifyPrice($price, $channelName ?? $this->sharedStorage->get('channel'));
     }
 
     /**
@@ -223,6 +219,22 @@ final class ManagingProductVariantsContext implements Context
     public function iDoNotWantToHaveShippingRequiredForThisProduct()
     {
         $this->createPage->setShippingRequired(false);
+    }
+
+    /**
+     * @When I check (also) the :productVariantName product variant
+     */
+    public function iCheckTheProductVariantName(string $productVariantName): void
+    {
+        $this->indexPage->checkResourceOnPage(['name' => $productVariantName]);
+    }
+
+    /**
+     * @When I delete them
+     */
+    public function iDeleteThem(): void
+    {
+        $this->indexPage->bulkDelete();
     }
 
     /**
@@ -521,7 +533,7 @@ final class ManagingProductVariantsContext implements Context
      */
     public function theVariantWithCodeShouldNotHaveShippingRequired(ProductVariantInterface $productVariant)
     {
-        $this->updatePage->open(['productId' => $productVariant->getProduct()->getId(),'id' => $productVariant->getId()]);
+        $this->updatePage->open(['productId' => $productVariant->getProduct()->getId(), 'id' => $productVariant->getId()]);
 
         Assert::false($this->updatePage->isShippingRequired());
     }
@@ -539,7 +551,7 @@ final class ManagingProductVariantsContext implements Context
 
     /**
      * @param string $element
-     * @param $message
+     * @param string $message
      */
     private function assertValidationMessage($element, $message)
     {

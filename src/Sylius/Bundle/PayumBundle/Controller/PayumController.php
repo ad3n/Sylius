@@ -33,9 +33,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- */
 final class PayumController
 {
     /**
@@ -163,23 +160,19 @@ final class PayumController
             $token = $this->getTokenFactory()->createAuthorizeToken(
                 $gatewayConfig->getGatewayName(),
                 $payment,
-                isset($redirectOptions['route'])
-                    ? $redirectOptions['route']
-                    : null,
-                isset($redirectOptions['parameters'])
-                    ? $redirectOptions['parameters']
-                    : []
+                $redirectOptions['route']
+                    ?? null,
+                $redirectOptions['parameters']
+                    ?? []
             );
         } else {
             $token = $this->getTokenFactory()->createCaptureToken(
                 $gatewayConfig->getGatewayName(),
                 $payment,
-                isset($redirectOptions['route'])
-                    ? $redirectOptions['route']
-                    : null,
-                isset($redirectOptions['parameters'])
-                    ? $redirectOptions['parameters']
-                    : []
+                $redirectOptions['route']
+                    ?? null,
+                $redirectOptions['parameters']
+                    ?? []
             );
         }
 

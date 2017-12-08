@@ -15,9 +15,6 @@ namespace Sylius\Component\Attribute\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 interface AttributeValueInterface extends ResourceInterface
 {
     public const STORAGE_BOOLEAN = 'boolean';
@@ -39,7 +36,6 @@ interface AttributeValueInterface extends ResourceInterface
     public function setSubject(?AttributeSubjectInterface $subject): void;
 
     /**
-     *
      * @return AttributeInterface|null
      */
     public function getAttribute(): ?AttributeInterface;

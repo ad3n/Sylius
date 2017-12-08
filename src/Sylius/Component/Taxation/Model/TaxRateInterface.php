@@ -17,9 +17,6 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 interface TaxRateInterface extends CodeAwareInterface, TimestampableInterface, ResourceInterface
 {
     /**
@@ -70,7 +67,7 @@ interface TaxRateInterface extends CodeAwareInterface, TimestampableInterface, R
     /**
      * @return string|null
      */
-    public function getCalculator(): ?string ;
+    public function getCalculator(): ?string;
 
     /**
      * @param string|null $calculator

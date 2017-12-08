@@ -19,10 +19,6 @@ use Sylius\Component\Product\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductVariantInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 final class ProductVariantGenerator implements ProductVariantGeneratorInterface
 {
     /**
@@ -88,7 +84,7 @@ final class ProductVariantGenerator implements ProductVariantGeneratorInterface
      *
      * @return ProductVariantInterface
      */
-    protected function createVariant(ProductInterface $product, array $optionMap, $permutation): ProductVariantInterface
+    private function createVariant(ProductInterface $product, array $optionMap, $permutation): ProductVariantInterface
     {
         /** @var ProductVariantInterface $variant */
         $variant = $this->productVariantFactory->createForProduct($product);

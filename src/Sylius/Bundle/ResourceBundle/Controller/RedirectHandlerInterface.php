@@ -16,9 +16,6 @@ namespace Sylius\Bundle\ResourceBundle\Controller;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 interface RedirectHandlerInterface
 {
     /**
@@ -31,7 +28,7 @@ interface RedirectHandlerInterface
 
     /**
      * @param RequestConfiguration $configuration
-     * @param null|ResourceInterface $resource
+     * @param ResourceInterface|null $resource
      *
      * @return Response
      */

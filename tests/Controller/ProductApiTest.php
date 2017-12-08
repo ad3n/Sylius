@@ -18,9 +18,6 @@ use Sylius\Component\Product\Model\ProductInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Anna Walasek <anna.walasek@lakion.com>
- */
 final class ProductApiTest extends JsonApiTestCase
 {
     /**
@@ -181,7 +178,7 @@ EOT;
         $this->loadFixturesFromFile('authentication/api_administrator.yml');
         $products = $this->loadFixturesFromFile('resources/products.yml');
         $this->loadFixturesFromFile('resources/locales.yml');
-        $product = $products["product3"];
+        $product = $products['product3'];
 
         $data =
 <<<EOT
@@ -208,7 +205,7 @@ EOT;
         $this->loadFixturesFromFile('authentication/api_administrator.yml');
         $products = $this->loadFixturesFromFile('resources/products.yml');
         $this->loadFixturesFromFile('resources/locales.yml');
-        $product = $products["product1"];
+        $product = $products['product1'];
 
         $data =
 <<<EOT
@@ -429,8 +426,8 @@ EOT;
                     "attribute": "mug_color",
                     "localeCode": "en_US",
                     "value": [
-                        "green", 
-                        "yellow"
+                        "7a968ac4-a1e3-4a37-a707-f22a839130c4", 
+                        "ff62a939-d946-4d6b-b742-b7115875ae75"
                     ]
                 }
             ],
@@ -483,8 +480,8 @@ EOT;
             '/api/v1/products/',
             [],
             ['images' => [
-                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/ford.jpg', __DIR__), "ford")],
-                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/mugs.jpg', __DIR__), "mugs")],
+                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/ford.jpg', __DIR__), 'ford')],
+                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/mugs.jpg', __DIR__), 'mugs')],
             ]],
             static::$authorizedHeaderWithContentType,
             $data

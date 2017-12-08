@@ -24,9 +24,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 class ChannelExampleFactory extends AbstractExampleFactory implements ExampleFactoryInterface
 {
     /**
@@ -73,7 +70,7 @@ class ChannelExampleFactory extends AbstractExampleFactory implements ExampleFac
     ) {
         $this->channelFactory = $channelFactory;
         $this->localeRepository = $localeRepository;
-        $this->currencyRepository= $currencyRepository;
+        $this->currencyRepository = $currencyRepository;
         $this->zoneRepository = $zoneRepository;
 
         $this->faker = \Faker\Factory::create();

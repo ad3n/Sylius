@@ -15,9 +15,6 @@ namespace Sylius\Bundle\ThemeBundle\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class TemplatingTest extends WebTestCase
 {
     /**
@@ -31,7 +28,7 @@ final class TemplatingTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', '/template/'.$templateName);
+        $crawler = $client->request('GET', '/template/' . $templateName);
         $this->assertEquals($contents, trim($crawler->text()));
     }
 
@@ -60,7 +57,7 @@ final class TemplatingTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', '/template/'.$templateName);
+        $crawler = $client->request('GET', '/template/' . $templateName);
         $this->assertEquals($contents, trim($crawler->text()));
     }
 
@@ -89,7 +86,7 @@ final class TemplatingTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', '/template/'.$templateName);
+        $crawler = $client->request('GET', '/template/' . $templateName);
         $this->assertEquals($contents, trim($crawler->text()));
     }
 
@@ -116,7 +113,7 @@ final class TemplatingTest extends WebTestCase
     {
         $client = self::createClient();
 
-        $crawler = $client->request('GET', '/template/'.$templateName);
+        $crawler = $client->request('GET', '/template/' . $templateName);
         $this->assertEquals($contents, trim($crawler->text()));
     }
 

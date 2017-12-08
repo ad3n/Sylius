@@ -18,9 +18,6 @@ use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\OrderTransitions;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 final class UnpaidOrdersStateUpdater implements UnpaidOrdersStateUpdaterInterface
 {
     /**
@@ -55,7 +52,7 @@ final class UnpaidOrdersStateUpdater implements UnpaidOrdersStateUpdaterInterfac
 
     public function cancel(): void
     {
-        $expiredUnpaidOrders = $this->orderRepository->findOrdersUnpaidSince(new \DateTime('-'.$this->expirationPeriod));
+        $expiredUnpaidOrders = $this->orderRepository->findOrdersUnpaidSince(new \DateTime('-' . $this->expirationPeriod));
         foreach ($expiredUnpaidOrders as $expiredUnpaidOrder) {
             $this->cancelOrder($expiredUnpaidOrder);
         }

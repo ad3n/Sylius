@@ -23,9 +23,6 @@ use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-/**
- * @author Saša Stamenković <umpirsky@gmail.com>
- */
 final class ShippingPercentageDiscountPromotionActionCommand implements PromotionActionCommandInterface
 {
     public const TYPE = 'shipping_percentage_discount';
@@ -33,7 +30,7 @@ final class ShippingPercentageDiscountPromotionActionCommand implements Promotio
     /**
      * @var FactoryInterface
      */
-    protected $adjustmentFactory;
+    private $adjustmentFactory;
 
     /**
      * @param FactoryInterface $adjustmentFactory
@@ -96,7 +93,7 @@ final class ShippingPercentageDiscountPromotionActionCommand implements Promotio
      *
      * @return OrderAdjustmentInterface
      */
-    protected function createAdjustment(
+    private function createAdjustment(
         PromotionInterface $promotion,
         string $type = AdjustmentInterface::ORDER_SHIPPING_PROMOTION_ADJUSTMENT
     ): OrderAdjustmentInterface {

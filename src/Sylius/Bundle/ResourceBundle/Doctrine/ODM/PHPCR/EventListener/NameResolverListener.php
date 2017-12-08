@@ -22,8 +22,6 @@ use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
  *
  * If a node already exists with the same name, then a numerical index will be
  * appended to the name.
- *
- * @author Daniel Leech <daniel@dantleech.com>
  */
 class NameResolverListener
 {
@@ -83,11 +81,12 @@ class NameResolverListener
 
             if (null === $existing) {
                 $metadata->setFieldValue($document, $nameField, $candidateName);
+
                 return;
             }
 
             $candidateName = sprintf('%s-%d', $baseCandidateName, $index);
-            $index++;
+            ++$index;
         }
     }
 }

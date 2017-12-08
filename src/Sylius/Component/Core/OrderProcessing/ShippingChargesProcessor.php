@@ -22,20 +22,17 @@ use Sylius\Component\Shipping\Calculator\DelegatingCalculatorInterface;
 use Sylius\Component\Shipping\Calculator\UndefinedShippingMethodException;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class ShippingChargesProcessor implements OrderProcessorInterface
 {
     /**
      * @var FactoryInterface
      */
-    protected $adjustmentFactory;
+    private $adjustmentFactory;
 
     /**
      * @var DelegatingCalculatorInterface
      */
-    protected $shippingChargesCalculator;
+    private $shippingChargesCalculator;
 
     /**
      * @param FactoryInterface $adjustmentFactory

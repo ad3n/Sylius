@@ -20,9 +20,6 @@ use Sylius\Bundle\AdminBundle\Event\OrderShowMenuBuilderEvent;
 use Sylius\Component\Order\OrderTransitions;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class OrderShowMenuBuilder
 {
     public const EVENT_NAME = 'sylius.menu.admin.order.show';
@@ -75,7 +72,7 @@ final class OrderShowMenuBuilder
         $menu
             ->addChild('order_history', [
                 'route' => 'sylius_admin_order_history',
-                'routeParameters' => ['id' => $order->getId()]
+                'routeParameters' => ['id' => $order->getId()],
             ])
             ->setAttribute('type', 'link')
             ->setLabel('sylius.ui.history')
@@ -87,7 +84,7 @@ final class OrderShowMenuBuilder
             $menu
                 ->addChild('cancel', [
                     'route' => 'sylius_admin_order_cancel',
-                    'routeParameters' => ['id' => $order->getId()]
+                    'routeParameters' => ['id' => $order->getId()],
                 ])
                 ->setAttribute('type', 'transition')
                 ->setLabel('sylius.ui.cancel')

@@ -18,9 +18,6 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Anna Walasek <anna.walasek@lakion.com>
- */
 final class ProductVariantApiTest extends JsonApiTestCase
 {
     /**
@@ -229,7 +226,6 @@ EOT;
         /** @var ProductInterface $product */
         $product = $productVariantsData['product1'];
 
-
         $data =
 <<<EOT
         {
@@ -429,7 +425,6 @@ EOT;
 
         $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
     }
-
 
     /**
      * @test

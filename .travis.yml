@@ -1,6 +1,6 @@
 language: php
 
-dist: precise
+dist: trusty
 
 env:
     global:
@@ -14,7 +14,7 @@ matrix:
             php: 7.1
             env:
                 - SYLIUS_SUITE="application"
-                - TRAVIS_NODE_VERSION="7.5"
+                - TRAVIS_NODE_VERSION="6.11"
             services:
                 - memcached
         -
@@ -25,6 +25,25 @@ matrix:
                 apt:
                     packages:
                         - parallel
+        -
+            sudo: required
+            php: 7.2
+            env:
+                - SYLIUS_SUITE="application"
+                - TRAVIS_NODE_VERSION="6.11"
+            services:
+                - memcached
+        -
+            sudo: false
+            php: 7.2
+            env: SYLIUS_SUITE="packages"
+            addons:
+                apt:
+                    packages:
+                        - parallel
+    allow_failures:
+        - php: 7.2
+    fast_finish: true
 
 cache:
     yarn: true

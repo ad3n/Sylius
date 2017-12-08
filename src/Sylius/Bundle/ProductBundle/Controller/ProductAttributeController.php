@@ -22,9 +22,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-/**
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- */
 class ProductAttributeController extends ResourceController
 {
     /**
@@ -84,6 +81,7 @@ class ProductAttributeController extends ResourceController
 
         $localeCodes = $this->get('sylius.translation_locale_provider')->getDefinedLocalesCodes();
 
+        $forms = [];
         foreach ($attributes as $attribute) {
             $forms[$attribute->getCode()] = $this->getAttributeFormsInAllLocales($attribute, $localeCodes);
         }

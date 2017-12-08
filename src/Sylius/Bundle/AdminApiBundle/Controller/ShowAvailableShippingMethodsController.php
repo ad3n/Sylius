@@ -27,9 +27,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 final class ShowAvailableShippingMethodsController
 {
     /**
@@ -115,7 +112,7 @@ final class ShowAvailableShippingMethodsController
         $cart = $this->orderRepository->findCartById($cartId);
 
         if (null === $cart) {
-            throw new NotFoundHttpException(sprintf("The cart with %s id could not be found!", $cartId));
+            throw new NotFoundHttpException(sprintf('The cart with %s id could not be found!', $cartId));
         }
 
         return $cart;
@@ -140,7 +137,7 @@ final class ShowAvailableShippingMethodsController
      */
     private function getCalculatedShippingMethods(ShipmentInterface $shipment, string $locale): array
     {
-        $shippingMethods =  $this->shippingMethodsResolver->getSupportedMethods($shipment);
+        $shippingMethods = $this->shippingMethodsResolver->getSupportedMethods($shipment);
 
         $rawShippingMethods = [];
 

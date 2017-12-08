@@ -41,11 +41,6 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Arkadiusz Krakowiak <arkadiusz.krakowiak@lakion.com>
- * @author Mateusz Zalewski <mateusz.zalewski@lakion.com>
- * @author Magdalena Banasiak <magdalena.banasiak@lakion.com>
- */
 final class ProductContext implements Context
 {
     /**
@@ -197,7 +192,7 @@ final class ProductContext implements Context
     }
 
     /**
-     * @Given /^(this product) is also priced at ("[^"]+") in ("[^"]+" channel)$/
+     * @Given /^(this product) is(?:| also) priced at ("[^"]+") in ("[^"]+" channel)$/
      */
     public function thisProductIsAlsoPricedAtInChannel(ProductInterface $product, $price, ChannelInterface $channel)
     {
@@ -208,6 +203,14 @@ final class ProductContext implements Context
         $productVariant->addChannelPricing($this->createChannelPricingForChannel($price, $channel));
 
         $this->objectManager->flush();
+    }
+
+    /**
+     * @Given /^(this product) is(?:| also) available in ("[^"]+" channel)$/
+     */
+    public function thisProductIsAlsoAvailableInChannel(ProductInterface $product, ChannelInterface $channel): void
+    {
+        $this->thisProductIsAlsoPricedAtInChannel($product, 0, $channel);
     }
 
     /**
@@ -542,7 +545,9 @@ final class ProductContext implements Context
         TaxCategoryInterface $taxCategory
     ) {
         $productVariant->setTaxCategory($taxCategory);
-        $this->objectManager->flush($productVariant);
+
+        $this->objectManager->persist($productVariant);
+        $this->objectManager->flush();
     }
 
     /**
@@ -748,13 +753,14 @@ final class ProductContext implements Context
 
         /** @var ImageInterface $productImage */
         $productImage = $this->productImageFactory->createNew();
-        $productImage->setFile(new UploadedFile($filesPath.$imagePath, basename($imagePath)));
+        $productImage->setFile(new UploadedFile($filesPath . $imagePath, basename($imagePath)));
         $productImage->setType($imageType);
         $this->imageUploader->upload($productImage);
 
         $product->addImage($productImage);
 
-        $this->objectManager->flush($product);
+        $this->objectManager->persist($product);
+        $this->objectManager->flush();
     }
 
     /**
@@ -773,6 +779,16 @@ final class ProductContext implements Context
     public function thisProductHasBeenDisabled(ProductInterface $product)
     {
         $product->disable();
+        $this->objectManager->flush();
+    }
+
+    /**
+     * @Given the product :product was renamed to :productName
+     */
+    public function theProductWasRenamedTo(ProductInterface $product, string $productName): void
+    {
+        $product->setName($productName);
+
         $this->objectManager->flush();
     }
 
@@ -873,7 +889,7 @@ final class ProductContext implements Context
 
     /**
      * @param ProductInterface $product
-     * @param $productVariantName
+     * @param string $productVariantName
      * @param int $price
      * @param string $code
      * @param ChannelInterface $channel

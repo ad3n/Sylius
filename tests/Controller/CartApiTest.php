@@ -18,9 +18,6 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Model\OrderItemInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @author Łukasz Chruściel <lukasz.chrusciel@lakion.com>
- */
 final class CartApiTest extends JsonApiTestCase
 {
     /**
@@ -429,7 +426,6 @@ EOT;
         }
 EOT;
 
-
         $this->client->request('PUT', $this->getCartItemUrl($cart, $cartItem), [], [], static::$authorizedHeaderWithContentType, $data);
 
         $response = $this->client->getResponse();
@@ -586,6 +582,7 @@ EOT;
     /**
      * @param OrderInterface $cart
      * @param OrderItemInterface $cartItem
+     *
      * @return string
      */
     private function getCartItemUrl(OrderInterface $cart, OrderItemInterface $cartItem)

@@ -29,9 +29,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 class OrderFixture extends AbstractFixture
 {
     /**
@@ -168,7 +165,7 @@ class OrderFixture extends AbstractFixture
         $customers = $this->customerRepository->findAll();
         $countries = $this->countryRepository->findAll();
 
-        for ($i = 0; $i < $options['amount']; $i++) {
+        for ($i = 0; $i < $options['amount']; ++$i) {
             $channel = $this->faker->randomElement($channels);
             $customer = $this->faker->randomElement($customers);
             $countryCode = $this->faker->randomElement($countries)->getCode();
@@ -226,7 +223,7 @@ class OrderFixture extends AbstractFixture
         $numberOfItems = rand(1, 5);
         $products = $this->productRepository->findAll();
 
-        for ($i = 0; $i < $numberOfItems; $i++) {
+        for ($i = 0; $i < $numberOfItems; ++$i) {
             $item = $this->orderItemFactory->createNew();
 
             $product = $this->faker->randomElement($products);

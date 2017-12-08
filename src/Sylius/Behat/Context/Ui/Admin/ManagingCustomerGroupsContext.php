@@ -20,9 +20,6 @@ use Sylius\Behat\Page\Admin\CustomerGroup\UpdatePageInterface;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Grzegorz Sadowski <grzegorz.sadowski@lakion.com>
- */
 final class ManagingCustomerGroupsContext implements Context
 {
     /**
@@ -118,9 +115,24 @@ final class ManagingCustomerGroupsContext implements Context
     }
 
     /**
+     * @When I check (also) the :customerGroupName customer group
+     */
+    public function iCheckTheCustomerGroup(string $customerGroupName): void
+    {
+        $this->indexPage->checkResourceOnPage(['name' => $customerGroupName]);
+    }
+
+    /**
+     * @When I delete them
+     */
+    public function iDeleteThem(): void
+    {
+        $this->indexPage->bulkDelete();
+    }
+
+    /**
      * @Then this customer group with name :name should appear in the store
      * @Then I should see the customer group :name in the list
-     *
      */
     public function thisCustomerGroupWithNameShouldAppearInTheStore($name)
     {
@@ -130,6 +142,7 @@ final class ManagingCustomerGroupsContext implements Context
     }
 
     /**
+     * @When I browse customer groups
      * @When I want to browse customer groups
      */
     public function iWantToBrowseCustomerGroups()
@@ -138,9 +151,10 @@ final class ManagingCustomerGroupsContext implements Context
     }
 
     /**
-     * @Then /^I should see (\d+) customer groups in the list$/
+     * @Then I should see a single customer group in the list
+     * @Then I should see :amountOfCustomerGroups customer groups in the list
      */
-    public function iShouldSeeCustomerGroupsInTheList($amountOfCustomerGroups)
+    public function iShouldSeeCustomerGroupsInTheList(int $amountOfCustomerGroups = 1): void
     {
         $this->indexPage->open();
 

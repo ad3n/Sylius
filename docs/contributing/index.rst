@@ -5,10 +5,10 @@ The Contribution Guide
 
     This section is based on the great `Symfony documentation <http://symfony.com/doc/current>`_.
 
-How to install Sylius to contribute?
-------------------------------------
+Install to Contribute
+---------------------
 
-Before you start contributing you need to have your own local environment for editing things.
+Before you can start contributing to Sylius code or documentation, you should install Sylius locally.
 
 To install Sylius main application from our main repository and contribute, run the following command:
 
@@ -63,10 +63,19 @@ And now you can use gulp for installing views, by just running a simple command:
 
     $ yarn run gulp
 
-For the contributing process questions, please refer to the `Contributing Guide <http://docs.sylius.org/en/latest/contributing/index.html>`_ that comes up in the following chapters.
+For the contributing process questions, please refer to the `Contributing Guide <http://docs.sylius.org/en/latest/contributing/index.html>`_ that comes up in the following chapters:
 
-.. _Gulp: http://gulpjs.com/
-.. _Node.js: https://nodejs.org/en/download/
+.. toctree::
+    :maxdepth: 1
+
+    code/index
+    documentation/index
+    translations/index
+
+How to contribute using Sylius Vagrant
+--------------------------------------
+
+If you would like to contribute to the repo without worrying about environment, you can follow `the "Configure Vagrant to contribute on Sylius Core" section here <https://github.com/Sylius/Vagrant/blob/master/README.md>`_ to setup your vagrant machine.
 
 Contributing Code
 -----------------
@@ -94,3 +103,19 @@ Contributing Translations
 .. toctree::
 
     translations/index
+
+Organization
+------------
+
+Sylius is developed by a vibrant community of commercial companies and individual developers.
+The chapter describes the rules & processes we use to organize our work.
+
+.. toctree::
+    :hidden:
+
+    organization/index
+
+.. include:: /contributing/organization/map.rst.inc
+
+.. _Gulp: http://gulpjs.com/
+.. _Node.js: https://nodejs.org/en/download/

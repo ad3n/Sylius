@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Sylius package.
+ *
+ * (c) Paweł Jędrzejewski
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Sylius\Bundle\AdminBundle\Twig;
@@ -27,7 +36,7 @@ final class ShopExtension extends \Twig_Extension
         return [
             new \Twig_Function('is_shop_enabled', function (): bool {
                 return $this->isShopEnabled;
-            })
+            }),
         ];
     }
 }

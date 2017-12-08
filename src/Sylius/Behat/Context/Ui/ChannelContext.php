@@ -21,9 +21,6 @@ use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class ChannelContext implements Context
 {
     /**
@@ -76,7 +73,7 @@ final class ChannelContext implements Context
      * @Given /^I changed (?:|back )my current (channel to "([^"]+)")$/
      * @When /^I change (?:|back )my current (channel to "([^"]+)")$/
      */
-    public function iChangeMyCurrentChannelTo(ChannelInterface $channel)
+    public function iChangeMyCurrentChannelTo(ChannelInterface $channel): void
     {
         $this->channelContextSetter->setChannel($channel);
     }
@@ -84,7 +81,7 @@ final class ChannelContext implements Context
     /**
      * @When I create a new channel :channelName
      */
-    public function iCreateNewChannel($channelName)
+    public function iCreateNewChannel(string $channelName): void
     {
         $this->channelCreatePage->open();
         $this->channelCreatePage->nameIt($channelName);
@@ -97,11 +94,15 @@ final class ChannelContext implements Context
 
     /**
      * @When /^I visit (this channel)'s homepage$/
+     * @When /^I (?:am browsing|start browsing|try to browse|browse) (that channel)$/
+     * @When /^I (?:am browsing|start browsing|try to browse|browse) (?:|the )("[^"]+" channel)$/
+     * @When /^I (?:am browsing|start browsing|try to browse|browse) (?:|the )(channel "[^"]+")$/
      */
-    public function iVisitChannelHomepage(ChannelInterface $channel)
+    public function iVisitChannelHomepage(ChannelInterface $channel): void
     {
         $this->channelContextSetter->setChannel($channel);
 
-        $this->homePage->open();
+        $defaultLocale = $channel->getDefaultLocale();
+        $this->homePage->open(['_locale' => $defaultLocale->getCode()]);
     }
 }

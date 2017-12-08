@@ -18,9 +18,6 @@ use Sylius\Component\Attribute\AttributeType\SelectAttributeType;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 class MugProductFixture extends AbstractFixture
 {
     /**
@@ -44,6 +41,11 @@ class MugProductFixture extends AbstractFixture
     private $productFixture;
 
     /**
+     * @var string
+     */
+    private $baseLocaleCode;
+
+    /**
      * @var \Faker\Generator
      */
     private $faker;
@@ -58,17 +60,20 @@ class MugProductFixture extends AbstractFixture
      * @param AbstractResourceFixture $productAttributeFixture
      * @param AbstractResourceFixture $productOptionFixture
      * @param AbstractResourceFixture $productFixture
+     * @param string $baseLocaleCode
      */
     public function __construct(
         AbstractResourceFixture $taxonFixture,
         AbstractResourceFixture $productAttributeFixture,
         AbstractResourceFixture $productOptionFixture,
-        AbstractResourceFixture $productFixture
+        AbstractResourceFixture $productFixture,
+        string $baseLocaleCode
     ) {
         $this->taxonFixture = $taxonFixture;
         $this->productAttributeFixture = $productAttributeFixture;
         $this->productOptionFixture = $productOptionFixture;
         $this->productFixture = $productFixture;
+        $this->baseLocaleCode = $baseLocaleCode;
 
         $this->faker = \Faker\Factory::create();
         $this->optionsResolver =
@@ -100,11 +105,16 @@ class MugProductFixture extends AbstractFixture
                 [
                     'code' => 'mugs',
                     'name' => 'Mugs',
-                ]
-            ]
+                ],
+            ],
         ]]]);
 
-        $mugMaterials = ['invisible_porcelain' => 'Invisible porcelain', 'banana_skin' => 'Banana skin', 'porcelain' => 'Porcelain', 'centipede' => 'Centipede'];
+        $mugMaterials = [
+            $this->faker->uuid => [$this->baseLocaleCode => 'Invisible porcelain'],
+            $this->faker->uuid => [$this->baseLocaleCode => 'Banana skin'],
+            $this->faker->uuid => [$this->baseLocaleCode => 'Porcelain'],
+            $this->faker->uuid => [$this->baseLocaleCode => 'Centipede'],
+        ];
         $this->productAttributeFixture->load(['custom' => [
             [
                 'name' => 'Mug material',
@@ -113,7 +123,7 @@ class MugProductFixture extends AbstractFixture
                 'configuration' => [
                     'multiple' => false,
                     'choices' => $mugMaterials,
-                ]
+                ],
             ],
         ]]);
 

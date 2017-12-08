@@ -19,9 +19,6 @@ use Sylius\Component\Currency\Context\CurrencyContextInterface;
 use Sylius\Component\Currency\Context\CurrencyNotFoundException;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class ChannelAwareCurrencyContext implements CurrencyContextInterface
 {
     /**
@@ -38,7 +35,7 @@ final class ChannelAwareCurrencyContext implements CurrencyContextInterface
      * @param CurrencyContextInterface $currencyContext
      * @param ChannelContextInterface $channelContext
      */
-    public function __construct(CurrencyContextInterface $currencyContext, ChannelContextInterface$channelContext)
+    public function __construct(CurrencyContextInterface $currencyContext, ChannelContextInterface $channelContext)
     {
         $this->currencyContext = $currencyContext;
         $this->channelContext = $channelContext;

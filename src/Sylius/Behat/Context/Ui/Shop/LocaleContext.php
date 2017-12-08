@@ -18,9 +18,6 @@ use Sylius\Behat\Page\Shop\HomePageInterface;
 use Sylius\Component\Locale\Context\LocaleNotFoundException;
 use Webmozart\Assert\Assert;
 
-/**
- * @author Kamil Kokot <kamil@kokot.me>
- */
 final class LocaleContext implements Context
 {
     /**
@@ -74,7 +71,7 @@ final class LocaleContext implements Context
         if (in_array($locale, $this->homePage->getAvailableLocales(), true)) {
             throw new \InvalidArgumentException(sprintf(
                 'Expected "%s" not to be in "%s"',
-                $localeName,
+                $locale,
                 implode('", "', $this->homePage->getAvailableLocales())
             ));
         }
@@ -87,6 +84,7 @@ final class LocaleContext implements Context
     {
         try {
             $this->homePage->tryToOpen();
+
             throw new \Exception('The page should not be able to open.');
         } catch (LocaleNotFoundException $e) {
         }

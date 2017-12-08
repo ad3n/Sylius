@@ -17,9 +17,6 @@ use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as SymfonyEventDispatcherInterface;
 
-/**
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 final class EventDispatcher implements EventDispatcherInterface
 {
     /**
@@ -42,7 +39,7 @@ final class EventDispatcher implements EventDispatcherInterface
         string $eventName,
         RequestConfiguration $requestConfiguration,
         ResourceInterface $resource
-    ):  ResourceControllerEvent {
+    ): ResourceControllerEvent {
         $eventName = $requestConfiguration->getEvent() ?: $eventName;
         $metadata = $requestConfiguration->getMetadata();
         $event = new ResourceControllerEvent($resource);
@@ -59,7 +56,7 @@ final class EventDispatcher implements EventDispatcherInterface
         string $eventName,
         RequestConfiguration $requestConfiguration,
         $resources
-    ):  ResourceControllerEvent {
+    ): ResourceControllerEvent {
         $eventName = $requestConfiguration->getEvent() ?: $eventName;
         $metadata = $requestConfiguration->getMetadata();
         $event = new ResourceControllerEvent($resources);

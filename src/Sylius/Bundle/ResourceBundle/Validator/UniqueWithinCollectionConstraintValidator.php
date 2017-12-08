@@ -17,9 +17,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-/**
- * @author Anna Walasek <anna.walasek@lakion.com>
- */
 final class UniqueWithinCollectionConstraintValidator extends ConstraintValidator
 {
     /**
@@ -39,6 +36,7 @@ final class UniqueWithinCollectionConstraintValidator extends ConstraintValidato
 
             if (!array_key_exists($checkingAttribute, $collectionOfEntitiesCodes)) {
                 $collectionOfEntitiesCodes[$checkingAttribute] = $key;
+
                 continue;
             }
 
